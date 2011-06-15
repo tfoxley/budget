@@ -1,0 +1,158 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#header {
+	background: url("/images/header-bk.png") repeat-x;
+	color: #ffffff;
+	text-align: center;
+	padding: 1px 0;
+	margin: 0;
+	width: 100%;
+	position: relative;
+}
+
+#header h1 {
+	font-size: 20px;
+	font-family: Helvetica;
+	font-weight: bold;
+}
+
+#header a {
+	color: #ffffff;
+	text-decoration: none;
+	font-family: Helvetica;
+	font-size: 12px;
+	line-height: 29px;
+}
+
+#header span.left {
+	position: absolute;
+	top: 15px;
+	left: 10px;
+}
+
+#header span.left-2 {
+	position: absolute;
+	top: 15px;
+	left: 45px;
+}
+
+#header span.right {
+	position: absolute;
+	top: 15px;
+	right: 10px;
+}
+
+ul {
+	font-size: 20px;
+	font-family: Helvetica;
+	font-weight: bold;
+	color: black;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	background-color: white;
+}
+
+li {
+	list-style-type: none;	
+	border-bottom: 1px solid rgb(217,217,217);
+	padding: 10px 10px 10px 10px;
+	height:20px;
+	line-height:20px;
+}
+
+li a img {
+	border: 0;
+	padding: 0 5px;
+}
+
+li.application {
+    line-height: 30px;
+    height: 30px;
+}
+
+li.application a {
+    text-decoration: none;
+    color: #000;
+    display: block;
+}
+
+li a.category {
+	display: block;
+	margin: -25px 0 0 40px;	  
+	text-decoration: none;
+	color: black;
+}
+
+li a.item {
+	display: block;
+	margin: -25px 0 0 75px;	  
+	text-decoration: none;
+	color: black;
+}
+
+li a.list-item {
+    display: block;
+	text-decoration: none;
+	color: black;
+}
+
+table {
+	font-size: 20px;
+	font-family: Helvetica;
+	font-weight: bold;
+	color: black;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	background-color: white;
+	padding: 0 5px;
+}
+
+table td {
+	padding-bottom: 12px;
+}
+
+table td .textarea {
+	width: 165px;
+	height: 72px;
+	font-size: 20px;
+}
+
+table td.text-field-label {
+	text-align: right;
+}
+
+table td.textarea-label {
+	vertical-align: top;
+	text-align: right;
+}
+
+table td .text-field {
+	width: 165px;
+	height: 24px;
+	font-size: 20px;
+}
+
+table td .quantity {
+	width: 40px;
+	height: 24px;
+	font-size: 20px;
+}
+
+table td.buttons {
+	text-align: center;
+	font-size: 20px;
+}
+
+table td.delete input {
+	width: 130px;
+	background-color: #c00000;
+}
+
+table td.buttons input {
+	font-size: 20px;
+}

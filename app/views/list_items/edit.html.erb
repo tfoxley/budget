@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Inventory</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no" />
+	<%= stylesheet_link_tag 'main' %>
+</head>
+<body>
+	<div id="header">
+		<h1><%= @list_item.name %></h1>
+		<span class="left"><a href="/lists/<%= @list_item.list_id %>"><img src="/images/back.png" alt="back"/></a></span>
+		<span class="left-2"><a href="/"><img src="/images/home.png" alt="home"/></a></span>
+		<span class="right"><a href="/list_items/new?list=<%=h @list_item.list_id %>"><img src="/images/new.png" alt="new"/></a></span>
+	</div>
+	
+	<% form_for(@list_item) do |f| %>
+	    <% if @list_item.errors.any? %>
+            <div id="error_explanation">
+                <h2><%= pluralize(@list_item.errors.count, "error") %> prohibited this list item from being saved:</h2>
+
+                <ul>
+                <% @list_item.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+                </ul>
+            </div>
+        <% end %>
+        
+		<table>
+			<tr>
+				<td class="text-field-label"><%= f.label :name %></td>
+				<td><%= f.text_field :name, :class => "text-field" %></td>
+			</tr>
+			<tr>
+				<td class="textarea-label"><%= f.label :description %></td>
+				<td><%= f.text_area :description, :class => "textarea" %></td>
+			</tr>
+			<tr>
+				<td class="buttons delete" colspan="2">
+					<input type="button" onclick="window.location='/list_items/destroy/<%= @list_item.id %>';" value="DELETE">
+				</td>
+			</tr>
+			<tr>
+				<td class="buttons" colspan="2">
+					<%= hidden_field(:inventory_item, :inventory_id, :value => @list_item.list_id) %>
+					<%= f.submit 'Update' %> <input type="button" onclick="window.location='/lists/<%= @list_item.list_id %>';" value="Cancel">
+				</td>
+			</tr>
+		</table>
+	<% end %>
+</body>
+</html>
