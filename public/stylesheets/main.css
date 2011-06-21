@@ -3,6 +3,10 @@ body {
 	padding: 0;
 }
 
+img {
+    border: none;
+}
+
 #header {
 	background: url("/images/header-bk.png") repeat-x;
 	color: #ffffff;
@@ -60,12 +64,11 @@ li {
 	list-style-type: none;	
 	border-bottom: 1px solid rgb(217,217,217);
 	padding: 10px 10px 10px 10px;
-	height:20px;
+	min-height:20px;
 	line-height:20px;
 }
 
 li a img {
-	border: 0;
 	padding: 0 5px;
 }
 
@@ -96,6 +99,7 @@ li a.item {
 
 li a.list-item {
     display: block;
+    margin: -20px 0 0 40px;
 	text-decoration: none;
 	color: black;
 }

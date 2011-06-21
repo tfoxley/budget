@@ -5,6 +5,12 @@
     	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
     	<meta name="viewport" content="width=device-width, user-scalable=no" />
     	<%= stylesheet_link_tag 'main' %>
+    	<script type="text/javascript">
+           function formfocus() {
+              document.getElementById('list_item_name').focus();
+           }
+           window.onload = formfocus;
+        </script>
     </head>
     <body>
     	<div id="header">

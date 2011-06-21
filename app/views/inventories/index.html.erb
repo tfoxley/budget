@@ -23,8 +23,8 @@
     	<ul>
     		<% @inventories.each do |inventory| %>
     			<li>
-    		    	<a href="/inventories/<%=h inventory.id %>/edit"><img src="/images/edit.png" alt="edit"/></a>
-    				<a class="category" href="/inventories/<%=h inventory.id %>"><%=h inventory.name %></a>
+    		    	<a href="/inventories/<%= inventory.id %>/edit"><img src="/images/edit.png" alt="edit"/></a>
+    				<a class="category" href="/inventories/<%= inventory.id %>"><%= inventory.name %></a>
     			</li>
     		<% end %>
     	</ul>

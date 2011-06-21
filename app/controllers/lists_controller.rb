@@ -13,6 +13,7 @@ class ListsController < ApplicationController
   # GET /lists/1
   def show
     @list = List.find(params[:id])
+    @title = @list.name.length > 20 ? @list.name[0, 20] + '...' : @list.name
     @list_items = ListItem.find(:all, :conditions => ["list_id = ?", params[:id]], :order => 'created_at desc')
 
     respond_to do |format|

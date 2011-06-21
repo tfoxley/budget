@@ -15,8 +15,8 @@
     	<ul>
     		<% @lists.each do |list| %>
     			<li>
-    		    	<a href="/lists/<%=h list.id %>/edit"><img src="/images/edit.png"/></a>
-    				<a class="category" href="/lists/<%=h list.id %>"><%=h list.name %></a>
+    		    	<a href="/lists/<%= list.id %>/edit"><img src="/images/edit.png"/></a>
+    				<a class="category" href="/lists/<%= list.id %>"><%= list.name %></a>
     			</li>
     		<% end %>
     	</ul>

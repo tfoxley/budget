@@ -6,6 +6,12 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no" />
 	<link rel="apple-touch-icon" href="/images/toolbox.png">
 	<%= stylesheet_link_tag 'main' %>
+	<script type="text/javascript">
+       function formfocus() {
+          document.getElementById('password').focus();
+       }
+       window.onload = formfocus;
+    </script>
 </head>
 <body>
 	<div id="header">
@@ -21,7 +27,7 @@
 				<td class="buttons"><%= password_field_tag :password, "", :class => "text-field" %></td>
 			</tr>
 			<tr>
-				<td class="buttons"><%= check_box_tag :persist  %> Remember Me</td>
+				<td class="buttons"><%= check_box_tag :persist  %> <label for="persist">Remember Me</label></td>
 			</tr>
 			<tr>
 				<td class="buttons" colspan="2">
