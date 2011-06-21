@@ -18,8 +18,8 @@
     	<ul id="items">
     		<% @list_items.each do |item| %>
     			<li>
-    			    <input type="checkbox" name="completed" checked="<%= item.completed ? 'checked' : '' %>">
-    				<a class="list-item" href="/list_items/<%= item.id %>/edit"><%= item.name %></a>
+    			    <input type="checkbox" name="completed" <%= item.completed ? 'checked' : '' %>>
+    				<a class="list-item <%= item.completed ? 'completed' : '' %>" href="/list_items/<%= item.id %>/edit"><%= item.name %></a>
     			</li>
     		<% end %>
     	</ul>

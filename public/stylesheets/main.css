@@ -104,6 +104,10 @@ li a.list-item {
 	color: black;
 }
 
+li a.list-item.completed {
+    text-decoration: line-through;
+}
+
 table {
 	font-size: 20px;
 	font-family: Helvetica;
