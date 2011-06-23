@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110621033326) do
+ActiveRecord::Schema.define(:version => 20110623152429) do
 
   create_table "inventories", :force => true do |t|
     t.string   "name"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20110621033326) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "list_id"
-    t.boolean  "completed"
+    t.boolean  "completed",   :default => false
   end
 
   create_table "lists", :force => true do |t|
