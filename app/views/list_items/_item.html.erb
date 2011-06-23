@@ -1,4 +1,4 @@
 <li id="<%= item.id %>">
     <input type="checkbox" id="checkbox-<%= item.id %>" data-id="<%= item.id %>" data-action="<%= item.completed ? 'incomplete' : 'complete' %>" name="completed" <%= item.completed ? "checked" : "" %>>
-	<a class="list-item <%= item.completed ? 'completed' : '' %>" href="/list_items/<%= item.id %>/edit"><%= item.name %> <%= item.completed %></a>
+	<a class="list-item <%= item.completed ? 'completed' : '' %>" href="/list_items/<%= item.id %>/edit"><%= item.name %></a>
 </li>
