@@ -5,12 +5,6 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, user-scalable=no" />
 	<%= stylesheet_link_tag 'main' %>
-	<script type="text/javascript">
-       function formfocus() {
-          document.getElementById('inventory_item_name').focus();
-       }
-       window.onload = formfocus;
-    </script>
 </head>
 <body>
 	<div id="header">
@@ -33,31 +27,18 @@
             </div>
         <% end %>
         
-		<table>
-			<tr>
-				<td class="text-field-label"><%= f.label :name %></td>
-				<td><%= f.text_field :name, :class => "text-field" %></td>
-			</tr>
-			<tr>
-				<td class="text-field-label"><%= f.label :quantity %></td>
-				<td><%= f.text_field :quantity, :class => "quantity" %></td>
-			</tr>
-			<tr>
-				<td class="textarea-label"><%= f.label :description %></td>
-				<td><%= f.text_area :description, :class => "textarea" %></td>
-			</tr>
-			<tr>
-				<td class="buttons delete" colspan="2">
-					<input type="button" onclick="window.location='/inventory_items/destroy/<%= @inventory_item.id %>';" value="DELETE">
-				</td>
-			</tr>
-			<tr>
-				<td class="buttons" colspan="2">
-					<%= hidden_field(:inventory_item, :inventory_id, :value => @inventory_item.inventory_id) %>
-					<%= f.submit 'Update' %> <input type="button" onclick="window.location='/inventories/<%= @inventory_item.inventory_id %>';" value="Cancel">
-				</td>
-			</tr>
-		</table>
+		<div class="form">
+			<p><%= f.text_field :name, :class => "text-field", :placeholder => :Name %></p>
+			<p><%= f.text_field :quantity, :class => "text-field", :placeholder => :Quantity %></p>
+			<p><%= f.text_area :description, :class => "textarea", :placeholder => :Description %></p>
+			<p class="buttons delete">
+				<input type="button" class="delete-button" onclick="window.location='/inventory_items/destroy/<%= @inventory_item.id %>';" value="DELETE">
+			</p>
+			<p class="buttons">
+				<%= hidden_field(:inventory_item, :inventory_id, :value => @inventory_item.inventory_id) %>
+				<%= f.submit 'Update', :class => "button" %> <input type="button" class="button" onclick="window.location='/inventories/<%= @inventory_item.inventory_id %>';" value="Cancel">
+			</p>
+		</div>
 	<% end %>
 </body>
 </html>

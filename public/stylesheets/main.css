@@ -108,59 +108,115 @@ li a.list-item.completed {
     text-decoration: line-through;
 }
 
-table {
-	font-size: 20px;
+div.form {
 	font-family: Helvetica;
 	font-weight: bold;
 	color: black;
-	margin: 0;
-	padding: 0;
-	width: 100%;
 	background-color: white;
-	padding: 0 5px;
 }
 
-table td {
+div.form p {
 	padding-bottom: 12px;
 }
 
-table td .textarea {
-	width: 165px;
+div.form p .textarea {
+	margin: 0 3%;
+	padding: 5px;
+	width: 90%;
 	height: 72px;
 	font-size: 20px;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
 }
 
-table td.text-field-label {
-	text-align: right;
-}
-
-table td.textarea-label {
-	vertical-align: top;
-	text-align: right;
-}
-
-table td .text-field {
-	width: 165px;
+div.form p .text-field {
+	margin: 0 3%;
+	padding: 5px;
+	width: 90%;
 	height: 24px;
 	font-size: 20px;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
 }
 
-table td .quantity {
-	width: 40px;
-	height: 24px;
-	font-size: 20px;
-}
-
-table td.buttons {
+div.form p.buttons {
 	text-align: center;
-	font-size: 20px;
 }
 
-table td.delete input {
-	width: 130px;
+div.form p.buttons input {
+    font-size: 16px;
+}
+
+div.form p.delete input {
+	width: 210px;
 	background-color: #c00000;
 }
 
-table td.buttons input {
-	font-size: 20px;
+.button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #a4e271;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #a4e271;
+	box-shadow:inset 0px 1px 0px 0px #a4e271;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #89c403), color-stop(1, #77a809) );
+	background:-moz-linear-gradient( center top, #89c403 5%, #77a809 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#89c403', endColorstr='#77a809');
+	background-color:#89c403;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #74b807;
+	display:inline-block;
+	color:#000;
+	font-family:Verdana;
+	font-size:15px;
+	font-weight:normal;
+	padding:6px 24px;
+	text-decoration:none;
+}
+
+.button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #77a809), color-stop(1, #89c403) );
+	background:-moz-linear-gradient( center top, #77a809 5%, #89c403 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77a809', endColorstr='#89c403');
+	background-color:#77a809;
+}
+
+.button:active {
+	position:relative;
+	top:1px;
+}
+
+.delete-button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #f5978e;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #f5978e;
+	box-shadow:inset 0px 1px 0px 0px #f5978e;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f24537), color-stop(1, #c62d1f) );
+	background:-moz-linear-gradient( center top, #f24537 5%, #c62d1f 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24537', endColorstr='#c62d1f');
+	background-color:#f24537;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #d02718;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Verdana;
+	font-size:15px;
+	font-weight:normal;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #810e05;
+}
+
+.delete-button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24537) );
+	background:-moz-linear-gradient( center top, #c62d1f 5%, #f24537 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24537');
+	background-color:#c62d1f;
+}
+
+.delete-button:active {
+	position:relative;
+	top:1px;
 }
