@@ -6,7 +6,17 @@
     	<meta name="viewport" content="width=device-width, user-scalable=no" />
     	<%= csrf_meta_tag %>
     	<%= stylesheet_link_tag 'main' %>
-    	<%= javascript_include_tag :defaults %>
+    	<%= javascript_include_tag "jquery-1.6.1", "jquery-rails" %>
+    	<script>
+    	    $(function() {
+    	        $("input:checkbox").live("change", function(){
+    	            var id = this.getAttribute("data-id");
+    	            var action = this.getAttribute("data-action");
+    	            var path = "/list_items/" + action + "/" + id;
+    	            $.post(path);
+    	        });
+    	    });
+    	</script>
     </head>
     <body>
     	<div id="header">
@@ -16,12 +26,8 @@
     		<span class="right"><a href="/list_items/new?list=<%= @list.id %>"><img src="/images/new.png" alt="new"/></a></span>
     	</div>
     	<ul id="items">
-    		<% @list_items.each do |item| %>
-    			<li>
-    			    <input type="checkbox" name="completed" <%= item.completed ? 'checked' : '' %>>
-    				<a class="list-item <%= item.completed ? 'completed' : '' %>" href="/list_items/<%= item.id %>/edit"><%= item.name %></a>
-    			</li>
-    		<% end %>
+    	    <%= render :partial => "list_items/item", :collection => @incomplete_items %>
+    	    <%= render :partial => "list_items/item", :collection => @complete_items %>
     	</ul>
     </body>
 </html>

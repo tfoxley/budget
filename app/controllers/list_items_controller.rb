@@ -40,6 +40,28 @@ class ListItemsController < ApplicationController
       end
     end
   end
+  
+  def complete
+    @id = params[:id]
+    @list_item = ListItem.find(@id)
+    
+    respond_to do |format|
+      if @list_item.update_attributes(:completed => true)
+        format.js { render :template => "/list_items/complete.rjs" }
+      end
+    end
+  end
+  
+  def incomplete
+    @id = params[:id]
+    @list_item = ListItem.find(@id)
+    
+    respond_to do |format|
+      if @list_item.update_attributes(:completed => false)
+        format.js { render :template => "/list_items/incomplete.rjs" }
+      end
+    end
+  end
 
   # DELETE /list_items/1
   def destroy

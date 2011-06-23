@@ -1,0 +1,3 @@
+$("#<%= @id %>").remove();
+<% result = render :partial => "list_items/item", :object => @list_item %>
+$("ul#items").prepend("<%= escape_javascript(result) %>");
