@@ -31,22 +31,14 @@
                     </ul>
                 </div>
             <% end %>
-    		<table>
-    			<tr>
-    				<td class="text-field-label"><%= f.label :name %></td>
-    				<td><%= f.text_field :name, :class => "text-field" %></td>
-    			</tr>
-    			<tr>
-    				<td class="textarea-label"><%= f.label :description %></td>
-    				<td><%= f.text_area :description, :class => "textarea" %></td>
-    			</tr>
-    			<tr>
-    				<td class="buttons" colspan="2">
-    					<%= hidden_field(:list_item, :list_id, :value => params[:list]) %>
-    					<%= f.submit 'Add' %> <input type="button" onclick="window.location='/lists/<%= params[:list] %>';" value="Cancel">
-    				</td>
-    			</tr>
-    		</table>
+    		<div class="form">
+    			<p><%= f.text_field :name, :class => "text-field", :placeholder => :Name %></p>
+    			<p><%= f.text_area :description, :class => "textarea", :placeholder => :Description %></p>
+    			<p class="buttons">
+    				<%= hidden_field(:inventory_item, :inventory_id, :value => @list_item.list_id) %>
+    				<%= f.submit 'Update', :class => "button" %> <input type="button" class="button" onclick="window.location='/lists/<%= @list_item.list_id %>';" value="Cancel">
+    			</p>
+    		</div>
     	<% end %>
     </body>
 </html>
