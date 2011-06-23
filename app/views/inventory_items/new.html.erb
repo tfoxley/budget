@@ -31,7 +31,7 @@
     			<p><%= f.text_area :description, :class => "textarea", :placeholder => :Description %></p>
     			<p class="buttons">
     				<%= hidden_field(:inventory_item, :inventory_id, :value => @inventory_item.inventory_id) %>
-    				<%= f.submit 'Create', :class => "button" %> <input type="button" class="button" onclick="window.location='/inventories/<%= @inventory_item.inventory_id %>';" value="Cancel">
+    				<%= f.submit 'Create', :class => "button" %> <input type="button" class="button" onclick="window.location='/inventories/<%= params[:inventory].blank? ? @inventory_item.inventory_id : params[:inventory] %>';" value="Cancel">
     			</p>
     		</div>
     	<% end %>

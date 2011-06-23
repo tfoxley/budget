@@ -30,7 +30,7 @@
     			<p><%= f.text_area :description, :class => "textarea", :placeholder => :Description %></p>
     			<p class="buttons">
     				<%= hidden_field(:inventory_item, :inventory_id, :value => @list_item.list_id) %>
-    				<%= f.submit 'Create', :class => "button" %> <input type="button" class="button" onclick="window.location='/lists/<%= @list_item.list_id %>';" value="Cancel">
+    				<%= f.submit 'Create', :class => "button" %> <input type="button" class="button" onclick="window.location='/lists/<%= params[:list].blank? ? @list_item.list_id : params[:list] %>';" value="Cancel">
     			</p>
     		</div>
     	<% end %>
