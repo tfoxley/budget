@@ -9,7 +9,7 @@
     <body>
     	<div id="header">
     		<h1>New Inventory Item</h1>
-    		<span class="left"><a href="/inventories/<%= @inventory_item.inventory_id %>"><img src="/images/back.png" alt="back"/></a></span>
+    		<span class="left"><a href="/inventories/<%= params[:inventory] %>"><img src="/images/back.png" alt="back"/></a></span>
     		<span class="left-2"><a href="/"><img src="/images/home.png" alt="home"/></a></span>
     	</div>
 	
@@ -30,7 +30,7 @@
     			<p><%= f.text_field :quantity, :class => "text-field", :placeholder => :Quantity %></p>
     			<p><%= f.text_area :description, :class => "textarea", :placeholder => :Description %></p>
     			<p class="buttons">
-    				<%= hidden_field(:inventory_item, :inventory_id, :value => @inventory_item.inventory_id) %>
+    				<%= hidden_field(:inventory_item, :inventory_id, :value => params[:inventory]) %>
     				<%= f.submit 'Create', :class => "button" %> <input type="button" class="button" onclick="window.location='/inventories/<%= params[:inventory].blank? ? @inventory_item.inventory_id : params[:inventory] %>';" value="Cancel">
     			</p>
     		</div>

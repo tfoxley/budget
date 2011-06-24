@@ -15,7 +15,7 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     @title = @list.name.length > 20 ? @list.name[0, 20] + '...' : @list.name
     @complete_items = ListItem.find(:all, :conditions => ["list_id = ? AND completed = ?", params[:id], true], :order => 'updated_at asc')
-    @incomplete_items = ListItem.find(:all, :conditions => ["list_id = ? AND (completed = ? OR completed IS NULL)", params[:id], false], :order => 'updated_at desc')
+    @incomplete_items = ListItem.find(:all, :conditions => ["list_id = ? AND completed = ?", params[:id], false], :order => 'updated_at desc')
 
     respond_to do |format|
       format.html # show.html.erb

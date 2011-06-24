@@ -9,7 +9,7 @@
     <body>
     	<div id="header">
     		<h1>New List Item</h1>
-    		<span class="left"><a href="/lists/<%= @list_item.list_id %>"><img src="/images/back.png" alt="back"/></a></span>
+    		<span class="left"><a href="/lists/<%= params[:list] %>"><img src="/images/back.png" alt="back"/></a></span>
     		<span class="left-2"><a href="/"><img src="/images/home.png" alt="home"/></a></span>
     	</div>
 	
@@ -29,7 +29,7 @@
     			<p><%= f.text_field :name, :class => "text-field", :placeholder => :Name %></p>
     			<p><%= f.text_area :description, :class => "textarea", :placeholder => :Description %></p>
     			<p class="buttons">
-    				<%= hidden_field(:inventory_item, :inventory_id, :value => @list_item.list_id) %>
+    				<%= hidden_field(:list_item, :list_id, :value => params[:list]) %>
     				<%= f.submit 'Create', :class => "button" %> <input type="button" class="button" onclick="window.location='/lists/<%= params[:list].blank? ? @list_item.list_id : params[:list] %>';" value="Cancel">
     			</p>
     		</div>
