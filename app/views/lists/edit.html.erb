@@ -31,7 +31,7 @@
         		<p><%= f.text_field :name, :class => "text-field", :placeholder => :Name %></p>
         		<p><%= f.text_area :description, :class => "textarea", :placeholder => :Description %></p>
         		<p class="buttons delete">
-    				<input type="button" class="delete-button" onclick="window.location='/categories/destroy/<%= @list.id %>';" value="DELETE">
+    			    <%= button_to "DELETE", { :controller => :lists, :action => 'destroy', :confirm => "Are you sure?", :id => @list.id }, { :class => "delete-button", :method => :delete } %>
     			</p>
         		<p class="buttons">
         			<%= f.submit 'Update', :class => "button" %> <input type="button" class="button" onclick="window.location='/lists';" value="Cancel">

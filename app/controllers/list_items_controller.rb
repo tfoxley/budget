@@ -66,10 +66,11 @@ class ListItemsController < ApplicationController
   # DELETE /list_items/1
   def destroy
     @list_item = ListItem.find(params[:id])
+    list_id = @list_item.list_id
     @list_item.destroy
 
     respond_to do |format|
-      format.html { redirect_to(list_items_url) }
+      format.html { redirect_to('/lists/' + list_id.to_s, :notice => 'List item was successfully deleted.') }
     end
   end
 end

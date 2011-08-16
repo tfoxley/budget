@@ -31,7 +31,7 @@
 			<p><%= f.text_field :name, :class => "text-field", :placeholder => :Name %></p>
 			<p><%= f.text_area :description, :class => "textarea", :placeholder => :Description %></p>
 			<p class="buttons delete">
-				<input type="button" class="delete-button" onclick="window.location='/list_items/destroy/<%= @list_item.id %>';" value="DELETE">
+			    <%= button_to "DELETE", { :controller => :list_items, :action => 'destroy', :confirm => "Are you sure?", :id => @list_item.id }, { :class => "delete-button", :method => :delete } %>
 			</p>
 			<p class="buttons">
 				<%= hidden_field(:inventory_item, :inventory_id, :value => @list_item.list_id) %>

@@ -149,6 +149,10 @@ div.form p.buttons {
 	text-align: center;
 }
 
+div.form p.buttons + div {
+	text-align: center;
+}
+
 div.form p.buttons input {
     font-size: 16px;
 }
