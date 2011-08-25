@@ -2,6 +2,7 @@ Toolbox::Application.routes.draw do
   
   match 'list_items/complete/:id' => 'list_items#complete'
   match 'list_items/incomplete/:id' => 'list_items#incomplete'
+  match 'list_items/quick_add' => 'list_items#quick_add'
   resources :list_items
   resources :lists
 

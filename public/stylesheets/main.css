@@ -49,6 +49,12 @@ img {
 	right: 10px;
 }
 
+#header span.right-2 {
+	position: absolute;
+	top: 15px;
+	right: 45px;
+}
+
 ul {
 	font-size: 20px;
 	font-family: Helvetica;
@@ -147,8 +153,10 @@ div.form p .text-field {
 
 div.form p.buttons {
 	text-align: center;
+	padding-top: 25px;
 }
 
+form.button_to,
 div.form p.buttons + div {
 	text-align: center;
 }
@@ -160,6 +168,29 @@ div.form p.buttons input {
 div.form p.delete input {
 	width: 210px;
 	background-color: #c00000;
+}
+
+input.delete-button {
+	width: 220px;
+}
+
+li.quick-add {
+	background-color: #aaa;
+}
+
+span.edit-mode {
+	display: none;
+}
+
+li.quick-add input {
+	padding: 5px 1%;
+	width: 98%;
+	height: 24px;
+	font-size: 20px;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	background-color: #eee;
 }
 
 .button {

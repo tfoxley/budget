@@ -30,14 +30,17 @@
 		<div class="form">
 			<p><%= f.text_field :name, :class => "text-field", :placeholder => :Name %></p>
 			<p><%= f.text_area :description, :class => "textarea", :placeholder => :Description %></p>
-			<p class="buttons delete">
-			    <%= button_to "DELETE", { :controller => :list_items, :action => 'destroy', :confirm => "Are you sure?", :id => @list_item.id }, { :class => "delete-button", :method => :delete } %>
-			</p>
+			
 			<p class="buttons">
 				<%= hidden_field(:inventory_item, :inventory_id, :value => @list_item.list_id) %>
 				<%= f.submit 'Update', :class => "button" %> <input type="button" class="button" onclick="window.location='/lists/<%= @list_item.list_id %>';" value="Cancel">
 			</p>
 		</div>
 	<% end %>
+	
+	<p class="buttons delete">
+	    <%= button_to "DELETE", { :controller => :list_items, :action => 'destroy' }, { :id => @list_item.id, :confirm => "Are you sure?", :class => "delete-button", :method => :delete } %>
+	</p>
+	
 </body>
 </html>

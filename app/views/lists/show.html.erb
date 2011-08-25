@@ -23,9 +23,16 @@
     		<h1><%= @title %></h1>
     		<span class="left"><a href="/lists"><img src="/images/back.png" alt="back"/></a></span>
     		<span class="left-2"><a href="/"><img src="/images/home.png" alt="home"/></a></span>
+    		<!--<span class="right-2"><a href="#" onclick="$('.active-mode').toggle(); $('.edit-mode').toggle(); return false;"><img src="/images/edit.png" alt="edit"/></a></span>-->
     		<span class="right"><a href="/list_items/new?list=<%= @list.id %>"><img src="/images/new.png" alt="new"/></a></span>
     	</div>
     	<ul id="items">
+    	    <li class="quick-add active-mode">
+    	        <% form_for :list_item, :remote => true, :url => { :controller => :list_items, :action => :quick_add } do |f| %>
+    	            <%= hidden_field :list_item, :list_id, :value => @list.id %>
+    	            <%= text_field :list_item, :name, :class => "quick-add", :placeholder => "Create New Item" %>
+    	        <% end %>
+    	    </li>
     	    <%= render :partial => "list_items/item", :collection => @incomplete_items %>
     	    <%= render :partial => "list_items/item", :collection => @complete_items %>
     	</ul>

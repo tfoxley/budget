@@ -1,3 +1,3 @@
-$("#<%= @id %>").remove();
+$("input#list_items_name").val("");
 <% result = render :partial => "list_items/item", :object => @list_item %>
 $("ul#items li.quick-add").after("<%= escape_javascript(result) %>");
