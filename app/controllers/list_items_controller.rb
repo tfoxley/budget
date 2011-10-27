@@ -64,6 +64,7 @@ class ListItemsController < ApplicationController
   end
 
   def quick_add
+    sleep(5)
     @list_item = ListItem.new(params[:list_item])
     puts @list_item.list_id
     respond_to do |format|
