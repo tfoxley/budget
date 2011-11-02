@@ -19,7 +19,7 @@
     	        $("li.quick-add form").submit(function() {
     	            var value = $("input.quick-add").val();
     	            $("input.quick-add").attr("disabled", "disabled").css("background", "#eeeeee url(/images/small-loader.gif) no-repeat right 8px");
-    	            $("input.quick-add").after("<input type='hidden' name='list_item[name]' value='" + value + "'/>");
+    	            $("input.quick-add").after("<input type='hidden' id="hidden-quick-add" name='list_item[name]' value='" + value + "'/>");
     	        });
     	    });
     	</script>
