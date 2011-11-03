@@ -82,6 +82,7 @@ class ListItemsController < ApplicationController
     @list_item.destroy
 
     respond_to do |format|
+      format.js { render :template => "/list_items/quick_delete.rjs" }
       format.html { redirect_to('/lists/' + list_id.to_s, :notice => 'List item was successfully deleted.') }
     end
   end

@@ -78,6 +78,10 @@ li a img {
 	padding: 0 5px;
 }
 
+li a img.delete {
+    margin-bottom: -2px;
+}
+
 li.application {
     line-height: 30px;
     height: 30px;
