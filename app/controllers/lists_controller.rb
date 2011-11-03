@@ -13,7 +13,7 @@ class ListsController < ApplicationController
   # GET /lists/1
   def show
     @list = List.find(params[:id])
-    @title = @list.name.length > 20 ? @list.name[0, 20] + '...' : @list.name
+    @title = @list.name.length > 15 ? @list.name[0, 15] + '...' : @list.name
     @complete_items = ListItem.find(:all, :conditions => ["list_id = ? AND completed = ?", params[:id], true], :order => 'updated_at asc')
     @incomplete_items = ListItem.find(:all, :conditions => ["list_id = ? AND completed = ?", params[:id], false], :order => 'updated_at desc')
 
