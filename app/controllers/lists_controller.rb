@@ -13,9 +13,9 @@ class ListsController < ApplicationController
   # GET /lists/1
   def show
     @list = List.find(params[:id])
-    @title = @list.name.length > 12 ? @list.name[0, 12] + '...' : @list.name
-    @complete_items = ListItem.find(:all, :conditions => ["list_id = ? AND completed = ?", params[:id], true], :order => 'updated_at asc')
-    @incomplete_items = ListItem.find(:all, :conditions => ["list_id = ? AND completed = ?", params[:id], false], :order => 'updated_at desc')
+    list_items = @list.list_items
+    @complete_items = list_items.collect { |x| x if x.completed }.compact.sort { |a, b| a.updated_at <=> b.updated_at }
+    @incomplete_items = list_items.collect { |x| x unless x.completed }.compact.sort { |a, b| b.updated_at <=> a.updated_at }
 
     respond_to do |format|
       format.html # show.html.erb
@@ -66,7 +66,7 @@ class ListsController < ApplicationController
   def destroy
     @list = List.find(params[:id])
     @list.destroy
-    ListItem.destroy_all(:list_id => params[:id])
+    
 
     respond_to do |format|
       format.html { redirect_to('/lists', :notice => 'List was successfully deleted.') }

@@ -13,7 +13,7 @@ class InventoriesController < ApplicationController
   # GET /inventories/1
   def show
     @inventory = Inventory.find(params[:id])
-    @inventory_items = InventoryItem.find(:all, :conditions => ["inventory_id = ?", params[:id]], :order => 'name asc')
+    @inventory_items = @inventory.inventory_items.sort { |a, b| a.name <=> b.name }
 
     respond_to do |format|
       format.html # show.html.erb

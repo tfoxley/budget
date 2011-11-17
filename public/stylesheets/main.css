@@ -21,6 +21,20 @@ img {
 	font-size: 20px;
 	font-family: Helvetica;
 	font-weight: bold;
+	white-space: nowrap;
+	overflow: hidden;
+	margin: 12px 90px;
+	max-width: 99%;
+}
+
+#header div.fade-out {
+    background: url(/images/header-fade.png);
+    /*background: pink;*/
+    width: 10px;
+    height: 48px;
+    position: absolute;
+    right: 0;
+    margin: -48px 90px 0 0;
 }
 
 #header a {

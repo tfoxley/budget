@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-    	<title><%= @title %></title>
+    	<title><%= @list.name %></title>
     	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
     	<meta name="viewport" content="width=device-width, user-scalable=no" />
     	<%= csrf_meta_tag %>
@@ -26,7 +26,8 @@
     </head>
     <body>
     	<div id="header">
-    		<h1><%= @title %></h1>
+    		<h1><%= @list.name %></h1>
+    		<div class="fade-out"></div>
     		<span class="left"><a href="/lists"><img src="/images/back.png" alt="back"/></a></span>
     		<span class="left-2"><a href="/"><img src="/images/home.png" alt="home"/></a></span>
     		<span class="right-2"><a href="#" onclick="$('.active-mode').toggle(); $('.edit-mode').toggle(); return false;"><img src="/images/edit.png" alt="edit"/></a></span>
@@ -39,6 +40,7 @@
     	            <%= text_field :list_item, :name, :class => "quick-add", :placeholder => "Create New Item" %>
     	        <% end %>
     	    </li>
+
     	    <%= render :partial => "list_items/item", :collection => @incomplete_items %>
     	    <%= render :partial => "list_items/item", :collection => @complete_items %>
     	</ul>

@@ -65,7 +65,6 @@ class ListItemsController < ApplicationController
 
   def quick_add
     @list_item = ListItem.new(params[:list_item])
-    puts @list_item.list_id
     respond_to do |format|
       if @list_item.save
         format.js { render :template => "/list_items/quick_add.rjs" }
