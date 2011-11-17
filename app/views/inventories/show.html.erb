@@ -11,6 +11,7 @@
     <body>
     	<div id="header">
     		<h1><%= @inventory.name %></h1>
+    		<div class="fade-out"></div>
     		<span class="left"><a href="/inventories"><img src="/images/back.png" alt="back"/></a></span>
     		<span class="left-2"><a href="/"><img src="/images/home.png" alt="home"/></a></span>
     		<span class="right"><a href="/inventory_items/new?inventory=<%= @inventory.id %>"><img src="/images/new.png" alt="new"/></a></span>
