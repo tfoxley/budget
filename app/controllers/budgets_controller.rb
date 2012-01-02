@@ -66,6 +66,10 @@ class BudgetsController < ApplicationController
       if @budget.save
         format.html { redirect_to(budgets_url + "/" + params[:year] + "/" + params[:month], :notice => 'Budget was successfully created.') }
       else
+        budgeted = Budget.all.collect { |b| b.category_id }
+        budgeted = 0 if budgeted.blank?
+        @categories = Category.where(["id NOT IN (?)", budgeted]).collect { |c| [ c.name, c.id ] }
+        @categories.sort! { |a,b| a[0] <=> b[0] }
         format.html { render :action => "new" }
       end
     end

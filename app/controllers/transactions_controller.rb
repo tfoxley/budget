@@ -51,6 +51,7 @@ class TransactionsController < ApplicationController
               "/" + @transaction.date.strftime("%m") + "#" + @transaction.id.to_s)
         }
       else
+        @categories = Category.find(:all, :order => "name")
         format.html { render :action => "new" }
       end
     end
