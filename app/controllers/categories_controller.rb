@@ -10,7 +10,10 @@ class CategoriesController < ApplicationController
     end
     @current = @cur_date.strftime("%B %Y")
     
-    @transactions = Transaction.find(:all, :conditions => { :date => @cur_date.beginning_of_month..@cur_date.end_of_month, :category_id => selected.id }, :order => "date desc,id desc")
+    @transactions = []
+    unless selected.nil?
+      @transactions = Transaction.find(:all, :conditions => { :date => @cur_date.beginning_of_month..@cur_date.end_of_month, :category_id => selected.id }, :order => "date desc,id desc")
+    end
 
     # build links for the next and previous months
     next_m = (@cur_date >> 1)
