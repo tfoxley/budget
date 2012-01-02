@@ -38,6 +38,7 @@ class BudgetsController < ApplicationController
     @budget = Budget.new
     
     budgeted = Budget.all.collect { |b| b.category_id }
+    budgeted = 0 if budgeted.blank?
     @categories = Category.where(["id NOT IN (?)", budgeted]).collect { |c| [ c.name, c.id ] }
     @categories.sort! { |a,b| a[0] <=> b[0] }
 
