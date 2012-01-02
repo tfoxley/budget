@@ -21,7 +21,10 @@ class CategoriesController < ApplicationController
     @next_link = "/categories/" + next_m.strftime("%Y") + "/" + next_m.strftime("%m")
     @prev_link = "/categories/" + prev_m.strftime("%Y") + "/" + prev_m.strftime("%m")
     @new_link = "/categories/new/" +  @cur_date.strftime("%Y")  + "/" + @cur_date.strftime("%m")
-    @edit_link = "/categories/" + selected.id.to_s + "/edit/" +  @cur_date.strftime("%Y")  + "/" + @cur_date.strftime("%m")
+    @edit_link = "#"
+    unless selected.nil?
+      @edit_link = "/categories/" + selected.id.to_s + "/edit/" +  @cur_date.strftime("%Y")  + "/" + @cur_date.strftime("%m")
+    end
 
     respond_to do |format|
       format.html # index.html.erb
