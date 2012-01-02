@@ -4,7 +4,7 @@ class AuthController < ApplicationController
   def login
     @password = cookies['toolbox']
     @password ||= ''
-    if Base64.decode64(@password) == '04till4ever'
+    if Base64.decode64(@password) == PASSKEY
       redirect_to '/'
     else
       respond_to do |format|
@@ -14,7 +14,7 @@ class AuthController < ApplicationController
   end
   
   def authorize
-    if params[:password] == '04till4ever'
+    if params[:password] == PASSKEY
       if(params[:persist])
         cookies['toolbox'] = { :value => Base64.encode64(params[:password]), :expires => 3.month.from_now }
       else

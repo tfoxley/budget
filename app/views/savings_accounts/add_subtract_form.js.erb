@@ -1,0 +1,9 @@
+if ($("#<%= params[:id] %> form").length > 0) {
+   $("#<%= params[:id] %> form").slideUp(800, function(){
+       $(this).remove();
+   });
+} else {
+    <% result = render :partial => "savings_accounts/add_subtract_form", :object => @savings_account %>
+    $("#<%= params[:id] %>").append("<%= escape_javascript(result) %>")
+    $("#<%= params[:id] %> form").slideDown(800);
+}

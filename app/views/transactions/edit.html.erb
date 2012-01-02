@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    	<title>Edit Transaction</title>
+    	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    	<meta name="viewport" content="width=device-width, user-scalable=no" />
+    	<%= stylesheet_link_tag 'main' %>
+    </head>
+    <body>
+    	<div id="header">
+    		<h1>Edit Transaction</h1>
+    		<span class="left"><a href="/transactions/<%= params[:year] %>/<%= params[:month] %>"><img src="/images/back.png" alt="back"/></a></span>
+    		<span class="left-2"><a href="/"><img src="/images/home.png" alt="home"/></a></span>
+    	</div>
+	
+    	<% form_for(@transaction) do |f| %>
+    	    <% if @transaction.errors.any? %>
+                <div id="error_explanation">
+                    <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+
+                    <ul>
+                    <% @transaction.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                    </ul>
+                </div>
+            <% end %>
+    		<div class="form">
+    		    <p><%= f.date_select :date, {}, :class => "select-box" %></p>
+    		    <p><%= f.text_field :to, :class => "text-field", :placeholder => :Payee %></p>
+    			<p><%= f.text_field :amount, :class => "text-field", :placeholder => :Amount %></p>
+    			<p><%= f.select :category_id, @categories.collect {|c| [ c.name, c.id ] }, {}, :class => "select-box wide" %></p>
+    			<p class="buttons">
+    				<%= f.submit 'Update', :class => "button" %> <input type="button" class="button" onclick="window.location='/transactions/<%= params[:year] %>/<%= params[:month] %>';" value="Cancel">
+    			</p>
+    		</div>
+    	<% end %>
+    	
+    	<p class="buttons delete">
+    	    <%= button_to "DELETE", { :controller => :transactions, :action => 'destroy' }, { :id => @transaction.id, :confirm => "Are you sure?", :class => "delete-button", :method => :delete } %>
+    	</p>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+<% form_for :savings_account, :remote => true, :url => { :controller => :savings_accounts, :action => :add_subtract }, :html => { :class => "add_subtract_form" } do |f| %>
+    <%= hidden_field_tag :id, @savings_account.id %>
+    
+    <div class="radio_group">
+        <%= radio_button_tag :add_or_subtract, 'add', true %>
+        <%= label_tag "savings_account_add_or_subtract_add", image_tag("plus.png") %>
+        <br/>
+        <%= radio_button_tag :add_or_subtract, 'subtract', false %>
+        <%= label_tag "savings_account_add_or_subtract_subtract", image_tag("minus.png") %>
+    </div>
+    <%= text_field_tag :adjustment, "", :placeholder => "Amount" %>
+    <%= f.submit "Update", :class => "button" %>
+<% end %>

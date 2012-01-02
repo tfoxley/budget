@@ -1,0 +1,10 @@
+$("#<%= params[:id] %> form").slideUp(800, function(){
+    $(this).remove();
+    
+    $("#<%= params[:id] %> .amount").html("<%= number_to_currency(@savings_account.amount, :negative_format => "- %u%n") %>");
+    <% if @savings_account.amount < 0 %>
+        $("#<%= params[:id] %> .amount").addClass("negative");
+    <% else %>
+        $("#<%= params[:id] %> .amount").removeClass("negative");
+    <% end %>
+});

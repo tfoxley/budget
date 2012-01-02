@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    	<title>Savings</title>
+    	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    	<meta name="viewport" content="width=device-width, user-scalable=no" />
+    	<%= stylesheet_link_tag 'main' %>
+    	<%= javascript_include_tag "jquery-1.6.1", "jquery-rails" %>
+    </head>
+    <body>
+    	<div id="header">
+    		<h1>Savings</h1>
+    		<span class="left"><a href="/"><img src="/images/home.png" alt="home"/></a></span>
+    		<span class="right-2"><a href="#" onclick="$('.active-mode').toggle(); $('.edit-mode').toggle(); return false;"><img src="/images/edit.png" alt="edit"/></a></span>
+    		<span class="right"><a href="/savings_accounts/new"><img src="/images/new.png" alt="new"/></a></span>
+    	</div>
+    	<ul>
+    		<% @savings_accounts.each do |savings_account| %>
+    			<li id="<%= savings_account.id %>">
+                    <span class="active-mode">
+                        <%= link_to image_tag("/images/add-sub.png", :class => "add-sub"), 
+                            "/savings_accounts/add_subtract_form/#{savings_account.id}", 
+                            :remote => true, :method => :post %>
+                    </span>
+                    <span class="edit-mode">
+                        <%= link_to image_tag("/images/delete.png", :class => "delete"), 
+                            savings_account, :remote => true, :method => :delete %>
+                    </span>
+                	
+                	<%= savings_account.name %>
+                	
+            	    <span class="right-align amount<%= ' negative' if savings_account.amount < 0 %>">
+            	        <%= number_to_currency(savings_account.amount, :negative_format => "- %u%n") %>
+            	    </span>
+                </li>
+    		<% end %>
+    		
+    		<li style="color: #444;">
+                Total
+        	    <span class="right-align amount<%= ' negative' if @total < 0 %>">
+        	        <%= number_to_currency(@total, :negative_format => "- %u%n") %>
+        	    </span>
+            </li>
+    	</ul>
+    </body>
+</html>

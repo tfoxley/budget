@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    	<title>Budget</title>
+    	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    	<meta name="viewport" content="width=device-width, user-scalable=no" />
+    	<%= stylesheet_link_tag 'main', 'finances', 'budget' %>
+    	<script>window.scrollTo(0,1);</script>
+    </head>
+    <body>
+    	<div id="header">
+    		<h1>Budget</h1>
+    		<span class="left"><a href="/"><img src="/images/home.png" alt="home"/></a></span>
+    		<span class="right"><a href="<%= @new_link %>"><img src="/images/new.png" alt="new"/></a></span>
+    	</div>
+    	
+    	<div id="nav">
+        	<ul>
+        		<li><a href="/transactions/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div><img src="/images/transactions.png" alt="transactions"/> Transxns</div></a></li>
+        		<li class="active"><a href="/budgets/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div><img src="/images/budget.png" alt="budget"/> Budget</div></a></li>
+        		<li><a href="/categories/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div><img src="/images/totals.png" alt="totals"/> Totals</div></a></li>
+        	</ul>
+        </div>
+    	
+    	<ul class="trans-list">
+    		<li class="selector">
+    			<a class="prev" href="<%= @prev_link %>"><img src="/images/back.png" alt="prev"/></a>
+    			<%= @current %>
+    			<a class="next" href="<%= @next_link %>"><img src="/images/forward.png" alt="next"/></a>
+    		</li>
+    		<li class="header">
+    		    <p class="category">Category</p>
+    		    <p class="budget">Budget</p>
+				<p class="spent">Spent</p>
+				<p class="remaining">Remaining</p>
+    		</li>
+    		<% @budgets.each do |value| %>
+    		    <% remaining = numeric?(value[1]) ? value[1] - value[2] : 0.0 %>
+    			<li class="budget">
+    			    <% if value[3] != 0 %>
+    				    <a href="/budgets/<%= value[3] %>/edit/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>">
+    				<% end %>
+    					<p class="category"><%= value[0] %></p>
+    				<% if value[3] != 0 %>
+    				    </a>
+    				<% end %>
+    				<p class="budget right"><%= numeric?(value[1]) ? number_to_currency(value[1]) : value[1] %></p>
+    				<p class="spent right"><%= number_to_currency(value[2]) %></p>
+    				<p class="remaining right <%= remaining > 0.0 ? 'positive' : 'negative' %>">
+    				    <%= numeric?(value[1]) ? number_to_currency(remaining) : value[1] %>
+    				</p>
+    			</li>
+    		<% end %>
+    	</ul>
+    </body>
+</html>

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def authorize
     @password = cookies['toolbox']
     @password ||= ''
-    if Base64.decode64(@password) == '04till4ever'
+    if Base64.decode64(@password) == PASSKEY
       true
     else
        redirect_to '/login'

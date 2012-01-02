@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    	<title>Totals</title>
+    	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    	<meta name="viewport" content="width=device-width, user-scalable=no" />
+    	<%= stylesheet_link_tag 'main', 'finances' %>
+    	<script>window.scrollTo(0,1);</script>
+    </head>
+    <body>
+    	<div id="header">
+    		<h1>Totals</h1>
+    		<span class="left"><a href="/"><img src="/images/home.png" alt="home"/></a></span>
+    		<span class="right-2"><a href="<%= @edit_link %>"><img src="/images/edit.png" alt="edit"/></a></span>
+    		<span class="right"><a href="<%= @new_link %>"><img src="/images/new.png" alt="new"/></a></span>
+    	</div>
+    	
+    	<div id="nav">
+        	<ul>
+        		<li><a href="/transactions/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div><img src="/images/transactions.png" alt="transactions"/> Transxns</div></a></li>
+        		<li><a href="/budgets/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div><img src="/images/budget.png" alt="budget"/> Budget</div></a></li>
+        		<li class="active"><a href="/categories/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div><img src="/images/totals.png" alt="totals"/> Totals</div></a></li>
+        	</ul>
+        </div>
+    	
+    	<ul class="trans-list">
+    		<li class="selector">
+    			<a class="prev" href="<%= @prev_link %>"><img src="/images/back.png" alt="prev"/></a>
+    			<%= @current %>
+    			<a class="next" href="<%= @next_link %>"><img src="/images/forward.png" alt="next"/></a>
+    		</li>
+    		<li class="selector">
+    		    <script type="text/javascript">
+    				function change(select) {
+    					var selected = select[select.selectedIndex].value;
+    					var path = '/categories/<%= params["year"] %>/<%= params["month"] %>?category=' + selected;
+    					window.location = path;
+    				}
+    			</script>
+    			<select name="category" onchange="change(this); return false;">
+    				<% @categories.each do |category| %>
+    					<option value="<%= category.id %>" <% if category.id == params['category'].to_i %>selected="selected"<% end %>><%= category.name %></option>
+    				<% end %>
+    			</select>
+    		</li>
+    		<% @transactions.each do |transaction| %>
+    			<li class="transaction">
+    				<a name="<%= transaction.id %>"> </a>
+    				<a href="/transactions/<%= transaction.id %>/edit/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>">
+    					<span class="info">
+    						<span class="to"><%=h transaction.to %></span>
+    						<br/>
+    						<%=h transaction.category.name %>
+    					</span>
+    				</a>
+    				<span class="data">
+    					<%= number_to_currency(transaction.amount) %>
+    					<br/>
+    					<%=h transaction.date.strftime("%b %d") %>
+    				</span>
+    			</li>
+    		<% end %>
+    	</ul>
+    </body>
+</html>

@@ -1,5 +1,5 @@
 body {
-	margin: 0;
+	margin: 47px 0 0 0;
 	padding: 0;
 }
 
@@ -11,10 +11,10 @@ img {
 	background: url("/images/header-bk.png") repeat-x;
 	color: #ffffff;
 	text-align: center;
-	padding: 1px 0;
 	margin: 0;
 	width: 100%;
-	position: relative;
+	position: fixed;
+	top: 0;
 }
 
 #header h1 {
@@ -84,8 +84,8 @@ li {
 	list-style-type: none;	
 	border-bottom: 1px solid rgb(217,217,217);
 	padding: 10px 10px 10px 10px;
-	min-height:20px;
-	line-height:20px;
+	min-height:22px;
+	line-height:22px;
 }
 
 li a img {
@@ -93,6 +93,10 @@ li a img {
 }
 
 li a img.delete {
+    margin-bottom: -2px;
+}
+
+li a img.add-sub {
     margin-bottom: -2px;
 }
 
@@ -132,15 +136,26 @@ li a.list-item.completed {
     text-decoration: line-through;
 }
 
+li span.right-align {
+    float: right;
+    padding: 0 5px;
+}
+
+li span.negative {
+    color: #ff0000;
+}
+
 div.form {
 	font-family: Helvetica;
 	font-weight: bold;
 	color: black;
 	background-color: white;
+	padding-top: 10px;
 }
 
 div.form p {
 	padding-bottom: 12px;
+	text-align: center;
 }
 
 div.form p .textarea {
@@ -169,6 +184,16 @@ div.form p .text-field {
 	background-color: #eee;
 }
 
+div.form p .select-box {
+    margin: 0 3%;
+    font-size: 20px;
+    border: 2px solid #000;
+}
+
+div.form p .select-box.wide {
+    width: 90%;
+}
+
 div.form p.buttons {
 	text-align: center;
 	padding-top: 25px;
@@ -194,6 +219,41 @@ input.delete-button {
 
 li.quick-add {
 	background-color: #aaa;
+}
+
+li form.add_subtract_form {
+    font-weight: normal;
+    font-size: 14px;
+    margin: 0 auto;
+    padding: 20px 0 5px 0;
+    width: 350px;
+    height: 70px;
+    display: none;
+}
+
+li form.add_subtract_form .radio_group {
+    float: left;
+}
+
+li form.add_subtract_form label {
+    padding: 0 20px 10px 0;
+}
+
+li form.add_subtract_form label img {
+    margin-bottom: -5px;
+}
+
+li form.add_subtract_form input[type=radio] {
+    padding-right: 20px;
+    margin-bottom: 10px;
+}
+
+li form.add_subtract_form input[type=text] {
+    padding: 5px 1%;
+    height: 24px;
+	font-size: 20px;
+    width: 80px;
+    margin: 7px 20px 0 10px;
 }
 
 span.edit-mode {

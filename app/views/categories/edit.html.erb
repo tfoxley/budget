@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    	<title>Edit Category</title>
+    	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    	<meta name="viewport" content="width=device-width, user-scalable=no" />
+    	<%= stylesheet_link_tag 'main' %>
+    </head>
+    <body>
+    	<div id="header">
+    		<h1>Edit Category</h1>
+    		<span class="left"><a href="/budgets/<%= params[:year] %>/<%= params[:month] %>"><img src="/images/back.png" alt="back"/></a></span>
+    		<span class="left-2"><a href="/"><img src="/images/home.png" alt="home"/></a></span>
+    	</div>
+	
+    	<% form_for(@category) do |f| %>
+    	    <% if @category.errors.any? %>
+                <div id="error_explanation">
+                    <h2><%= pluralize(@category.errors.count, "error") %> prohibited this budget from being saved:</h2>
+
+                    <ul>
+                    <% @category.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                    </ul>
+                </div>
+            <% end %>
+    		<div class="form">
+    			<p><%= f.text_field :name, :class => "text-field", :placeholder => :Name %></p>
+    			<p class="buttons">
+    			    <%= hidden_field_tag(:month, params[:month]) %>
+    			    <%= hidden_field_tag(:year, params[:year]) %>
+    				<%= f.submit 'Update', :class => "button" %> <input type="button" class="button" onclick="window.location='/categories/<%= params[:year] %>/<%= params[:month] %>';" value="Cancel">
+    			</p>
+    		</div>
+    	<% end %>
+    	
+    	<p class="buttons delete">
+    	    <%= button_to "DELETE", { :controller => :categories, :action => 'destroy' }, { :id => @category.id, :confirm => "Are you sure?", :class => "delete-button", :disabled => "disabled", :method => :delete } %>
+    	</p>
+    </body>
+</html>

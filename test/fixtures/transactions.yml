@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  int: 
+  date: 2011-12-15
+  float: 
+  string: 
+
+two:
+  int: 
+  date: 2011-12-15
+  float: 
+  string: 
