@@ -15,6 +15,7 @@ img {
 	width: 100%;
 	position: fixed;
 	top: 0;
+	z-index: 1;
 }
 
 #header h1 {
@@ -171,7 +172,8 @@ div.form p .textarea {
 	background-color: #eee;
 }
 
-div.form p .text-field {
+div.form p .text-field,
+div.form div .text-field {
 	margin: 0 3%;
 	padding: 5px;
 	width: 90%;
@@ -180,14 +182,18 @@ div.form p .text-field {
 	-moz-border-radius:6px;
 	-webkit-border-radius:6px;
 	border-radius:6px;
-	border: 2px solid #000;
+	/*border: 2px solid #000;*/
 	background-color: #eee;
 }
 
 div.form p .select-box {
     margin: 0 3%;
     font-size: 20px;
-    border: 2px solid #000;
+    -moz-border-radius:6px;
+	-webkit-border-radius:6px;
+    border-radius: 6px;
+    border-color: #999;
+    height: 34px
 }
 
 div.form p .select-box.wide {
@@ -269,6 +275,25 @@ li.quick-add input {
 	-webkit-border-radius:6px;
 	border-radius:6px;
 	background-color: #eee;
+}
+
+div#error_explanation {
+    color: red;
+    width: 75%;
+    padding: 15px 0;
+    margin: 0 auto;
+}
+
+div#error_explanation h2 {
+    font-size: 20px;
+}
+
+div#error_explanation li {
+    border: none;
+    font-size: 18px;
+    list-style-type: square;
+    color: red;
+    margin-left: 18px;
 }
 
 .button {

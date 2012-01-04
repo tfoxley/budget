@@ -16,8 +16,7 @@
     	<% form_for(@transaction) do |f| %>
     	    <% if @transaction.errors.any? %>
                 <div id="error_explanation">
-                    <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
-
+                    <h2>Please fix errors:</h2>
                     <ul>
                     <% @transaction.errors.full_messages.each do |msg| %>
                         <li><%= msg %></li>
@@ -27,7 +26,7 @@
             <% end %>
     		<div class="form">
     		    <p><%= f.date_select :date, {}, :class => "select-box" %></p>
-    		    <p><%= f.text_field :to, :class => "text-field", :placeholder => :Payee %></p>
+    		    <p><%= f.text_field :to, :class => "text-field", :placeholder => "To (payee)" %></p>
     			<p><%= f.text_field :amount, :class => "text-field", :placeholder => :Amount %></p>
     			<p><%= f.select :category_id, @categories.collect {|c| [ c.name, c.id ] }, {}, :class => "select-box wide" %></p>
     			<p class="buttons">
