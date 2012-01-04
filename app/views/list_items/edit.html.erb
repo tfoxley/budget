@@ -17,8 +17,7 @@
 	<% form_for(@list_item) do |f| %>
 	    <% if @list_item.errors.any? %>
             <div id="error_explanation">
-                <h2><%= pluralize(@list_item.errors.count, "error") %> prohibited this list item from being saved:</h2>
-
+                <h2>Please fix errors:</h2>
                 <ul>
                 <% @list_item.errors.full_messages.each do |msg| %>
                     <li><%= msg %></li>

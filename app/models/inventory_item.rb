@@ -1,5 +1,5 @@
 class InventoryItem < ActiveRecord::Base
   belongs_to :inventory
   
-  validates :name,  :presence => true
+  validates_presence_of :name
 end

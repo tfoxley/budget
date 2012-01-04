@@ -168,7 +168,7 @@ div.form p .textarea {
 	-moz-border-radius:6px;
 	-webkit-border-radius:6px;
 	border-radius:6px;
-	border: 2px solid #000;
+	border-color: #999;
 	background-color: #eee;
 }
 
@@ -182,7 +182,6 @@ div.form div .text-field {
 	-moz-border-radius:6px;
 	-webkit-border-radius:6px;
 	border-radius:6px;
-	/*border: 2px solid #000;*/
 	background-color: #eee;
 }
 
