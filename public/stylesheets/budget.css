@@ -44,6 +44,9 @@ li p.right {
 
 li p.category {
 	width: 27%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 li a p.category {
