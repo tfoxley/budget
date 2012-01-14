@@ -27,7 +27,7 @@
     		<div class="form">
     		    <p><%= f.date_select :date, {}, :class => "select-box" %></p>
     		    <p><%= f.text_field :to, :class => "text-field", :placeholder => "To (payee)" %></p>
-    			<p><%= f.text_field :amount, :class => "text-field", :placeholder => :Amount %></p>
+    			<p><%= f.text_field :amount, :class => "text-field", :type => "number", :placeholder => :Amount %></p>
     			<p><%= f.select :category_id, @categories.collect {|c| [ c.name, c.id ] }, {}, :class => "select-box wide" %></p>
     			<p class="buttons">
     				<%= f.submit 'Create', :class => "button" %> <input type="button" class="button" onclick="window.location='/transactions/<%= params[:year] %>/<%= params[:month] %>';" value="Cancel">

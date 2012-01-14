@@ -18,7 +18,7 @@
         	<ul>
         		<li><a href="/transactions/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div><img src="/images/transactions.png" alt="transactions"/> Transxns</div></a></li>
         		<li class="active"><a href="/budgets/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div><img src="/images/budget.png" alt="budget"/> Budget</div></a></li>
-        		<li><a href="/categories/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div><img src="/images/totals.png" alt="totals"/> Totals</div></a></li>
+        		<li><a href="/categories/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div><img src="/images/totals.png" alt="totals"/> Categories</div></a></li>
         	</ul>
         </div>
     	
@@ -34,8 +34,14 @@
 				<p class="spent">Spent</p>
 				<p class="remaining">Remaining</p>
     		</li>
+    		<% budget_total = 0.0 %>
+    		<% spent_total = 0.0 %>
+    		<% remaining_total = 0.0 %>
     		<% @budgets.each do |value| %>
     		    <% remaining = numeric?(value[1]) ? value[1] - value[2] : 0.0 %>
+    		    <% budget_total += numeric?(value[1]) ? value[1] : 0.0 %>
+        		<% spent_total += value[2] %>
+        		<% remaining_total += remaining %>
     			<li class="budget">
     			    <% if value[3] != 0 %>
     				    <a href="/budgets/<%= value[3] %>/edit/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>">
@@ -51,6 +57,14 @@
     				</p>
     			</li>
     		<% end %>
+    		<li class="header">
+    		    <p class="category">Total</p>
+    		    <p class="budget right"><%= number_to_currency(budget_total) %></p>
+				<p class="spent right"><%= number_to_currency(spent_total) %></p>
+				<p class="remaining right <%= remaining_total > 0.0 ? 'positive' : 'negative' %>">
+				    <%= number_to_currency(remaining_total) %>
+				</p>
+    		</li>
     	</ul>
     </body>
 </html>
