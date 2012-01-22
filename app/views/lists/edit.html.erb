@@ -5,13 +5,20 @@
     	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
     	<meta name="viewport" content="width=device-width, user-scalable=no" />
     	<%= stylesheet_link_tag 'main' %>
+    	<script>
+    	    window.addEventListener("load",function() {
+              setTimeout(function(){
+                window.scrollTo(0, 1);
+              }, 0);
+            });
+        </script>
     </head>
     <body>
     	<div id="header">
     		<h1>Edit List</h1>
-    		<span class="left"><a href="/lists"><img src="/images/back.png" alt="back"/></a></span>
-    		<span class="left-2"><a href="/"><img src="/images/home.png" alt="home"/></a></span>
-    		<span class="right"><a href="/lists/new"><img src="/images/new.png" alt="new"/></a></span>
+    		<span class="left"><a href="/lists" class="sprite back-icon"></a></span>
+    		<span class="left-2"><a href="/" class="sprite home-icon"></a></span>
+    		<span class="right"><a href="/lists/new" class="sprite new-icon"></a></span>
     	</div>
 
         <% form_for(@list) do |f| %>

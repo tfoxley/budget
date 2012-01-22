@@ -3,10 +3,10 @@
     
     <div class="radio_group">
         <%= radio_button_tag :add_or_subtract, 'add', true %>
-        <%= label_tag "savings_account_add_or_subtract_add", image_tag("plus.png") %>
+        <%= label_tag "add_or_subtract_add", "", :class => "sprite plus-icon" %>
         <br/>
         <%= radio_button_tag :add_or_subtract, 'subtract', false %>
-        <%= label_tag "savings_account_add_or_subtract_subtract", image_tag("minus.png") %>
+        <%= label_tag "add_or_subtract_subtract", "", :class => "sprite minus-icon" %>
     </div>
     <%= text_field_tag :adjustment, "", :placeholder => "Amount" %>
     <%= f.submit "Update", :class => "button" %>

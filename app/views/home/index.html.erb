@@ -5,17 +5,24 @@
     	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
     	<meta name="viewport" content="width=device-width, user-scalable=no" />
     	<link rel="apple-touch-icon" href="/images/toolbox.png" />
-    	<link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+    	<%= stylesheet_link_tag 'main' %>
+    	<script>
+    	    window.addEventListener("load",function() {
+              setTimeout(function(){
+                window.scrollTo(0, 1);
+              }, 0);
+            });
+        </script>
     </head>
     <body>
     	<div id="header">
     		<h1>Toolbox</h1>
     	</div>
     	<ul>
-    		<li class="application"><a href="/inventories"><img src="/images/cart.png" /> Inventory</a></li>
-    		<li class="application"><a href="/lists"><img src="/images/list.png" /> Lists</a></li>
-    		<li class="application"><a href="/transactions"><img src="/images/money-bag.png" /> Finances</a></li>
-    		<li class="application"><a href="/savings_accounts"><img src="/images/money-envelope.png" /> Savings Accounts</a></li>
+    		<li class="application"><a href="/inventories"><div class="sprite cart-icon pad-right"></div>Inventory</a></li>
+    		<li class="application"><a href="/lists"><div class="sprite list-icon pad-right"></div>Lists</a></li>
+    		<li class="application"><a href="/transactions"><div class="sprite money-bag-icon pad-right"></div>Finances</a></li>
+    		<li class="application"><a href="/savings_accounts"><div class="sprite money-envelope-icon pad-right"></div>Savings Accounts</a></li>
     	</ul>
     </body>
 </html>
