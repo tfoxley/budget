@@ -17,13 +17,13 @@
     <body>
     	<div id="header">
     		<h1>Inventory</h1>
-    		<span class="left"><a href="/"><img src="/images/home.png" alt="home"/></a></span>
-    		<span class="right"><a href="/inventories/new"><img src="/images/new.png" alt="new"/></a></span>
+    		<span class="left"><a href="/" class="sprite home-icon"></a></span>
+    		<span class="right"><a href="/inventories/new" class="sprite new-icon"></a></span>
     	</div>
     	<ul>
     		<% @inventories.each do |inventory| %>
     			<li>
-    		    	<a href="/inventories/<%= inventory.id %>/edit"><img src="/images/edit.png" alt="edit"/></a>
+    		    	<a href="/inventories/<%= inventory.id %>/edit" class="sprite edit-icon pad-right"></a>
     				<a class="category" href="/inventories/<%= inventory.id %>"><%= inventory.name %></a>
     			</li>
     		<% end %>

@@ -4,29 +4,35 @@
     	<title>Budget</title>
     	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
     	<meta name="viewport" content="width=device-width, user-scalable=no" />
-    	<%= stylesheet_link_tag 'main', 'finances', 'budget' %>
-    	<script>window.scrollTo(0,1);</script>
+    	<%= stylesheet_link_tag 'main' %>
+    	<script>
+    	    window.addEventListener("load",function() {
+              setTimeout(function(){
+                window.scrollTo(0, 1);
+              }, 0);
+            });
+        </script>
     </head>
     <body>
     	<div id="header">
     		<h1>Budget</h1>
-    		<span class="left"><a href="/"><img src="/images/home.png" alt="home"/></a></span>
-    		<span class="right"><a href="<%= @new_link %>"><img src="/images/new.png" alt="new"/></a></span>
+    		<span class="left"><a href="/" class="sprite home-icon"></a></span>
+    		<span class="right"><a href="<%= @new_link %>" class="sprite new-icon"></a></span>
     	</div>
     	
     	<div id="nav">
-        	<ul>
-        		<li><a href="/transactions/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div><img src="/images/transactions.png" alt="transactions"/> Transxns</div></a></li>
-        		<li class="active"><a href="/budgets/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div><img src="/images/budget.png" alt="budget"/> Budget</div></a></li>
-        		<li><a href="/categories/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div><img src="/images/totals.png" alt="totals"/> Categories</div></a></li>
+    	    <ul>
+        		<li><a href="/transactions"><div class="sprite transactions-icon pad-right">Transxns</div></a></li>
+        		<li class="active"><a href="/budgets/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite budget-icon pad-right">Budget</div></a></li>
+        		<li><a href="/categories/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite totals-icon pad-right">Categories</div></a></li>
         	</ul>
         </div>
     	
     	<ul class="trans-list">
     		<li class="selector">
-    			<a class="prev" href="<%= @prev_link %>"><img src="/images/back.png" alt="prev"/></a>
+    			<a class="prev sprite back-icon" href="<%= @prev_link %>"></a>
     			<%= @current %>
-    			<a class="next" href="<%= @next_link %>"><img src="/images/forward.png" alt="next"/></a>
+    			<a class="next sprite forward-icon" href="<%= @next_link %>"></a>
     		</li>
     		<li class="header">
     		    <p class="category">Category</p>

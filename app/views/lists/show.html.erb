@@ -8,6 +8,12 @@
     	<%= stylesheet_link_tag 'main' %>
     	<%= javascript_include_tag "jquery-1.6.1", "jquery-rails" %>
     	<script>
+    	    window.addEventListener("load",function() {
+              setTimeout(function(){
+                window.scrollTo(0, 1);
+              }, 0);
+            });
+            
     	    $(function() {
     	        $("input:checkbox").live("change", function(){
     	            var id = this.getAttribute("data-id");
@@ -27,11 +33,10 @@
     <body>
     	<div id="header">
     		<h1><%= @list.name %></h1>
-    		<div class="fade-out"></div>
-    		<span class="left"><a href="/lists"><img src="/images/back.png" alt="back"/></a></span>
-    		<span class="left-2"><a href="/"><img src="/images/home.png" alt="home"/></a></span>
-    		<span class="right-2"><a href="#" onclick="$('.active-mode').toggle(); $('.edit-mode').toggle(); return false;"><img src="/images/edit.png" alt="edit"/></a></span>
-    		<span class="right"><a href="/list_items/new?list=<%= @list.id %>"><img src="/images/new.png" alt="new"/></a></span>
+    		<span class="left"><a href="/lists" class="sprite back-icon"></a></span>
+    		<span class="left-2"><a href="/" class="sprite home-icon"></a></span>
+    		<span class="right-2"><a href="#" onclick="$('.active-mode').toggle(); $('.edit-mode').toggle(); return false;" class="sprite edit-icon"></a></span>
+    		<span class="right"><a href="/list_items/new?list=<%= @list.id %>" class="sprite new-icon"></a></span>
     	</div>
     	<ul id="items">
     	    <li class="quick-add active-mode">

@@ -5,13 +5,20 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, user-scalable=no" />
 	<%= stylesheet_link_tag 'main' %>
+	<script>
+	    window.addEventListener("load",function() {
+          setTimeout(function(){
+            window.scrollTo(0, 1);
+          }, 0);
+        });
+    </script>
 </head>
 <body>
 	<div id="header">
 		<h1>Edit Inventory Item</h1>
-		<span class="left"><a href="/inventories/<%= @inventory_item.inventory_id %>"><img src="/images/back.png" alt="back"/></a></span>
-		<span class="left-2"><a href="/"><img src="/images/home.png" alt="home"/></a></span>
-		<span class="right"><a href="/inventory_items/new?inventory=<%= @inventory_item.inventory_id %>"><img src="/images/new.png" alt="new"/></a></span>
+		<span class="left"><a href="/inventories/<%= @inventory_item.inventory_id %>" class="sprite back-icon"></a></span>
+		<span class="left-2"><a href="/" class="sprite home-icon"></a></span>
+		<span class="right"><a href="/inventory_items/new?inventory=<%= @inventory_item.inventory_id %>" class="sprite new-icon"></a></span>
 	</div>
 	
 	<% form_for(@inventory_item) do |f| %>
@@ -30,14 +37,16 @@
 			<p><%= f.text_field :name, :class => "text-field", :placeholder => :Name %></p>
 			<p><%= f.text_field :quantity, :class => "text-field", :placeholder => :Quantity %></p>
 			<p><%= f.text_area :description, :class => "textarea", :placeholder => :Description %></p>
-			<p class="buttons delete">
-				<input type="button" class="delete-button" onclick="window.location='/inventory_items/destroy/<%= @inventory_item.id %>';" value="DELETE">
-			</p>
 			<p class="buttons">
 				<%= hidden_field(:inventory_item, :inventory_id, :value => @inventory_item.inventory_id) %>
 				<%= f.submit 'Update', :class => "button" %> <input type="button" class="button" onclick="window.location='/inventories/<%= @inventory_item.inventory_id %>';" value="Cancel">
 			</p>
 		</div>
 	<% end %>
+	
+	<p class="buttons delete">
+	    <%= button_to "DELETE", { :controller => :inventory_items, :action => 'destroy' }, { :id => @inventory_item.id, :confirm => "Are you sure?", :class => "delete-button", :method => :delete } %>
+	</p>
+	
 </body>
 </html>

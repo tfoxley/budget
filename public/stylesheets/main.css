@@ -24,18 +24,9 @@ img {
 	font-weight: bold;
 	white-space: nowrap;
 	overflow: hidden;
+	text-overflow: ellipsis;
 	margin: 12px 90px;
-	max-width: 99%;
-}
-
-#header div.fade-out {
-    background: url(/images/header-fade.png);
-    /*background: pink;*/
-    width: 10px;
-    height: 48px;
-    position: absolute;
-    right: 0;
-    margin: -48px 90px 0 0;
+	max-width: 100%;
 }
 
 #header a {
@@ -85,7 +76,7 @@ li {
 	list-style-type: none;	
 	border-bottom: 1px solid rgb(217,217,217);
 	padding: 10px 10px 10px 10px;
-	min-height:22px;
+	min-height:24px;
 	line-height:22px;
 }
 
@@ -101,36 +92,10 @@ li a img.add-sub {
     margin-bottom: -2px;
 }
 
-li.application {
-    line-height: 30px;
-    height: 30px;
-}
-
-li.application a {
+li a {
     text-decoration: none;
     color: #000;
     display: block;
-}
-
-li a.category {
-	display: block;
-	margin: -25px 0 0 40px;	  
-	text-decoration: none;
-	color: black;
-}
-
-li a.item {
-	display: block;
-	margin: -25px 0 0 75px;	  
-	text-decoration: none;
-	color: black;
-}
-
-li a.list-item {
-    display: block;
-    margin: -20px 0 0 40px;
-	text-decoration: none;
-	color: black;
 }
 
 li a.list-item.completed {
@@ -146,6 +111,16 @@ li span.negative {
     color: #ff0000;
 }
 
+.pad-left {
+    padding-left: 10px;
+}
+
+.pad-right {
+    padding-right: 10px;
+}
+
+
+/* Form styles */
 div.form {
 	font-family: Helvetica;
 	font-weight: bold;
@@ -201,7 +176,6 @@ div.form p .select-box.wide {
 
 div.form p.buttons {
 	text-align: center;
-	padding-top: 25px;
 }
 
 form.button_to,
@@ -249,8 +223,8 @@ li form.add_subtract_form label img {
 }
 
 li form.add_subtract_form input[type=radio] {
-    padding-right: 20px;
-    margin-bottom: 10px;
+    margin: 4px 20px 10px 1px;
+    float: left;
 }
 
 li form.add_subtract_form input[type=text] {
@@ -263,6 +237,13 @@ li form.add_subtract_form input[type=text] {
 
 span.edit-mode {
 	display: none;
+}
+
+input[type=checkbox].active-mode {
+    float: left;
+    margin-right: 12px;
+    width: 20px;
+    height: 20px;
 }
 
 li.quick-add input {
@@ -294,7 +275,10 @@ div#error_explanation li {
     color: red;
     margin-left: 18px;
 }
+/* Form styles */
 
+
+/* Button styles */
 .button {
 	-moz-box-shadow:inset 0px 1px 0px 0px #a4e271;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #a4e271;
@@ -361,3 +345,194 @@ div#error_explanation li {
 	position:relative;
 	top:1px;
 }
+/* Button styles */
+
+
+/* Sprites styles */
+.sprite { display: block; background: url('/images/icons-sprite.png') no-repeat; float: left; }
+.money-envelope-icon { background-position: -10px -0px; width: 20px; height: 20px; }
+.new-icon { background-position: -10px -30px; width: 20px; height: 20px; }
+.add-sub-icon { background-position: -10px -60px; width: 20px; height: 20px; }
+.money-bag-icon { background-position: -10px -90px; width: 20px; height: 20px; }
+.delete-icon { background-position: -10px -120px; width: 20px; height: 20px; }
+.cart-icon { background-position: -10px -150px; width: 20px; height: 20px; }
+.back-icon { background-position: -10px -180px; width: 20px; height: 20px; }
+.plus-icon { background-position: -10px -210px; width: 20px; height: 20px; }
+.edit-icon { background-position: -10px -240px; width: 20px; height: 20px; }
+.forward-icon { background-position: -10px -270px; width: 20px; height: 20px; }
+.list-icon { background-position: -10px -300px; width: 20px; height: 20px; }
+.minus-icon { background-position: -10px -330px; width: 20px; height: 20px; }
+.home-icon { background-position: -10px -360px; width: 20px; height: 20px; }
+.totals-icon { background-position: -10px -390px; width: 16px; height: 16px; }
+.transactions-icon { background-position: -10px -416px; width: 16px; height: 16px; }
+.budget-icon { background-position: -10px -442px; width: 16px; height: 16px; }
+/* Sprites styles */
+
+
+/* Budget styles*/
+li.selector {
+	padding: 14px 10px;
+	height:19px;
+	line-height:19px;
+}
+
+li.header {
+    height: 30px;
+    padding: 0;
+    font-weight: bold;
+}
+
+li.header p {
+	height: 15px;
+	line-height: 15px;
+	padding: 8px 2%;
+	text-align: center;
+}
+
+li.header p.category {
+    text-align: left;
+}
+
+li.budget {
+    padding: 0;
+    height: 35px;
+    font-weight: normal;
+}
+
+li p {
+	float: left;
+	padding: 7px 2%;
+	margin: 0;
+	font-size: 12px;
+}
+
+li p.right {
+	text-align: right;
+}
+
+li p.category {
+	width: 27%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+li a p.category {
+	color: #000000;
+	text-decoration: none;
+}
+
+li p.budget,
+li p.spent,
+li p.remaining {
+	width: 19%;
+}
+
+li p.negative {
+    color: red;
+}
+
+li p.positive {
+    color: green;
+}
+/* Budget styles */
+
+
+/* Finance styles */
+#nav {
+	background: url("/images/header-bk.png") repeat-x;
+	height: 50px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	z-index: 1;
+}
+
+#nav ul {
+	margin: 0;
+	padding: 0;
+}
+
+#nav li {
+    text-align: center;
+	float: left;
+	list-style-type: none;
+	width: 29%;
+	height: 36px;
+	border: none;
+	padding: 2px 0 0 0;
+	-moz-border-radius: 7px;
+    border-radius: 7px;
+    margin: 7px 2%;
+}
+
+#nav li div {
+	font-size: 10px;
+	text-align: center;
+	margin: 8px auto;
+	float: none;
+	width: 40px;
+	padding-left: 20px;
+	line-height: 15px;
+}
+
+#nav li.active {
+	background-color:#333;
+}
+
+#nav li a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+#nav li a img {
+	border: none;
+	margin-bottom: -4px;
+}
+
+li.selector {
+    text-align: center;
+}
+
+li span.info {
+    float: left;
+}
+
+li span.data {
+    float: right;
+    text-align: right;
+}
+
+li span.info span.to {
+    font-weight: bold;
+}
+
+ul.trans-list {
+    margin-bottom: 50px;
+    font-weight: normal;
+}
+
+ul.trans-list li.transaction {
+    font-size: 12px;
+    min-height: 40px;
+}
+
+ul.trans-list li.transaction a {
+    text-decoration: none;
+    color: #000;
+}
+
+a.prev img, a.next img {
+    margin-bottom: -2px;
+}
+
+a.prev {
+    float: left;
+    margin-left: 25px;
+}
+
+a.next {
+    float: right;
+    margin-right: 25px;
+}
+/* Finance styles */
