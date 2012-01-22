@@ -1,4 +1,6 @@
 class TransactionsController < ApplicationController
+  before_filter :authorize
+  
   # GET /transactions
   def index
     @cur_date = Date.current

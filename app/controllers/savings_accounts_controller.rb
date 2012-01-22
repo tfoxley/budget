@@ -1,4 +1,6 @@
 class SavingsAccountsController < ApplicationController
+  before_filter :authorize
+  
   # GET /savings_accounts
   def index
     @savings_accounts = SavingsAccount.find(:all, :order => 'name')

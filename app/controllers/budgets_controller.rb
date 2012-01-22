@@ -1,4 +1,6 @@
 class BudgetsController < ApplicationController
+  before_filter :authorize
+  
   # GET /budgets
   def index
     @cur_date = Date.current

@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_filter :authorize
+  
   # GET /categories
   def index
     @categories = Category.find(:all, :order => "name")
