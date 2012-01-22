@@ -8,7 +8,12 @@ img {
 }
 
 #header {
-	background: url("/images/header-bk.png") repeat-x;
+	background-image: linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
+    background-image: -o-linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
+    background-image: -moz-linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
+    background-image: -webkit-linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
+    background-image: -ms-linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.2, #212121), color-stop(0.44, #050505), color-stop(0.52, #2B2B2B));
 	color: #ffffff;
 	text-align: center;
 	margin: 0;
@@ -440,7 +445,12 @@ li p.positive {
 
 /* Finance styles */
 #nav {
-	background: url("/images/header-bk.png") repeat-x;
+    background-image: linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
+    background-image: -o-linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
+    background-image: -moz-linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
+    background-image: -webkit-linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
+    background-image: -ms-linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.2, #212121), color-stop(0.44, #050505), color-stop(0.52, #2B2B2B));
 	height: 50px;
 	position: fixed;
 	bottom: 0;
