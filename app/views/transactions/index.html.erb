@@ -5,12 +5,22 @@
     	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
     	<meta name="viewport" content="width=device-width, user-scalable=no" />
     	<%= stylesheet_link_tag 'main' %>
+    	<%= javascript_include_tag "jquery-1.7.1.min", "jquery-rails", "jquery-ui-1.8.17.custom.min" %>
     	<script>
     	    window.addEventListener("load",function() {
               setTimeout(function(){
                 window.scrollTo(0, 1);
               }, 0);
             });
+            
+            $(function() {
+    	        $("input:checkbox").live("change", function(){
+    	            var id = this.getAttribute("data-id");
+    	            var action = this.getAttribute("data-action");
+    	            var path = "/transactions/" + action + "/" + id;
+    	            $.post(path);
+    	        });
+    	    });
         </script>
     </head>
     <body>
@@ -39,7 +49,8 @@
     			<span class="data"><%= number_to_currency(@current_balance) %></span>
     		</li>
     		<% @transactions.each do |transaction| %>
-    			<li class="transaction">
+    			<li class="transaction" id="<%= transaction.id %>">
+    				<input type="checkbox" class="reconcile" id="checkbox-<%= transaction.id %>" data-id="<%= transaction.id %>" data-action="<%= transaction.reconciled ? 'unreconcile' : 'reconcile' %>" name="reconciled" <%= transaction.reconciled ? "checked" : "" %>>
     				<a name="<%= transaction.id %>"> </a>
     				<a href="/transactions/<%= transaction.id %>/edit/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>">
     					<span class="info">

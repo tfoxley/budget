@@ -504,6 +504,13 @@ li.selector {
     text-align: center;
 }
 
+li input.reconcile {
+    float: left;
+    margin: 13px 13px 0 0;
+    width: 20px;
+    height: 20px;
+}
+
 li span.info {
     float: left;
 }

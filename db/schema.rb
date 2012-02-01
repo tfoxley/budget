@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111229210035) do
+ActiveRecord::Schema.define(:version => 20120201140029) do
 
   create_table "budgets", :force => true do |t|
     t.float    "amount"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20111229210035) do
     t.string   "to"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "reconciled",  :default => false
   end
 
 end

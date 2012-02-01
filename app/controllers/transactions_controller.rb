@@ -74,6 +74,32 @@ class TransactionsController < ApplicationController
       end
     end
   end
+  
+  def reconcile
+    @id = params[:id]
+    @transaction = Transaction.find(@id)
+    
+    respond_to do |format|
+      if @transaction.update_attributes(:reconciled => true)
+        format.js { render :js => "$('##{@id}').effect('highlight', {'color':'#aaa'}, 3000);" }
+      else
+        format.js { render :js => "alert('Failed to reconcile transaction.'); $('#checkbox-#{@id}').prop('checked', !$('#checkbox-#{@id}')[0].checked);" }
+      end
+    end
+  end
+  
+  def unreconcile
+    @id = params[:id]
+    @transaction = Transaction.find(@id)
+    
+    respond_to do |format|
+      if @transaction.update_attributes(:reconciled => false)
+        format.js { render :js => "$('##{@id}').effect('highlight', {'color':'#aaa'}, 3000);" }
+      else
+        format.js { render :js => "alert('Failed to unreconile transaction.'); $('#checkbox-#{@id}').prop('checked', !$('#checkbox-#{@id}')[0].checked);" }
+      end
+    end
+  end
 
   # DELETE /transactions/1
   def destroy

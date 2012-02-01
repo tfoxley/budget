@@ -6,6 +6,8 @@ Toolbox::Application.routes.draw do
   match 'categories/:id/edit/:year/:month' => 'categories#edit'
 
   resources :transactions
+  match 'transactions/reconcile/:id' => 'transactions#reconcile'
+  match 'transactions/unreconcile/:id' => 'transactions#unreconcile'
   match 'transactions/:year/:month' => 'transactions#index'
   match 'transactions/new/:year/:month' => 'transactions#new'
   match 'transactions/:id/edit/:year/:month' => 'transactions#edit'
