@@ -3,21 +3,36 @@
 <head>
 	<title>Toolbox</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, user-scalable=no" />
-	<link rel="apple-touch-icon" href="/images/toolbox.png">
-	<%= stylesheet_link_tag 'main' %>
+	<%= stylesheet_link_tag 'full' %>
+	<link href='http://fonts.googleapis.com/css?family=Happy+Monkey' rel='stylesheet' type='text/css'>
 </head>
-<body>
-	<div id="header">
-		<h1>Login</h1>
-	</div>
-	
-	<% form_for :auth, :url => {:action => "authorize"} do |f| %>
-		<div class="form">
-			<p><%= password_field_tag :password, "", :class => "text-field", :placeholder => :Password %></p>
-			<p class="buttons"><%= check_box_tag :persist  %> <label for="persist">Remember Me</label></p>
-			<p class="buttons"><%= f.submit 'Login', :class => "button" %></p>
+<body id="login">
+	<div class="stack-bottom paper"></div>
+	<div class="stack-middle paper"></div>
+	<div class="login v-center paper">
+		<div id="header">
+			<h1>Login</h1>
 		</div>
-	<% end %>
+		<div class="form">
+			<% form_for :auth, :url => {:action => "authorize"} do |f| %>
+				<div class="form">
+					<div class="group">
+						<p>
+							<%= text_field_tag :username, "", :class => "text-field", :placeholder => :Username %>
+						</p>
+						<p>
+							<%= password_field_tag :password, "", :class => "text-field", :placeholder => :Password %>
+						</p>
+						<p class="buttons" style="line-height:35px;">
+							<%= check_box_tag :persist, "", false, :class => "checkbox"  %> <label for="persist">Remember Me</label>
+						</p>
+					</div>
+					<p class="buttons"><%= f.submit 'Login', :class => "button" %></p>
+				</div>
+			<% end %>
+		</div>
+	</div>
+		</div>
+	</div>
 </body>
 </html>

@@ -3,26 +3,36 @@
     <head>
     	<title>Toolbox</title>
     	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    	<meta name="viewport" content="width=device-width, user-scalable=no" />
-    	<link rel="apple-touch-icon" href="/images/toolbox.png" />
-    	<%= stylesheet_link_tag 'main' %>
-    	<script>
-    	    window.addEventListener("load",function() {
-              setTimeout(function(){
-                window.scrollTo(0, 1);
-              }, 0);
-            });
-        </script>
+    	<%= stylesheet_link_tag 'full' %>
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
     </head>
-    <body>
+    <body id="home">
     	<div id="header">
-    		<h1>Toolbox</h1>
+    		<h1 class="left">Toolbox</h1>
+			<ul class="right">
+				<li><a href="/logout">Logout</a></li>
+				<li>Travis Foxley</li>
+			</ul>
     	</div>
-    	<ul>
-    		<li class="application"><a href="/inventories"><div class="sprite cart-icon pad-right"></div>Inventory</a></li>
-    		<li class="application"><a href="/lists"><div class="sprite list-icon pad-right"></div>Lists</a></li>
-    		<li class="application"><a href="/transactions"><div class="sprite money-bag-icon pad-right"></div>Finances</a></li>
-    		<li class="application"><a href="/savings_accounts"><div class="sprite money-envelope-icon pad-right"></div>Savings Accounts</a></li>
-    	</ul>
+		<div id="content">
+    		<ul>
+	    		<li><a href="/inventories">
+					<div class="sprite cart-icon pad-right"><img src="/images/cart-large.png"/></div>
+					Inventory
+				</a></li>
+	    		<li><a href="/lists">
+					<div class="sprite list-icon pad-right"><img src="/images/checkmark-large.png"/></div>
+					Lists
+				</a></li>
+	    		<li><a href="/transactions">
+					<div class="sprite dollar-sign"><img src="/images/dollar-sign-large.png"/></div>
+					Finances
+				</a></li>
+	    		<li><a href="/savings_accounts">
+					<div class="sprite user-icon pad-right"><img src="/images/silouette-large.png"/></div>
+					Users
+				</a></li>
+	    	</ul>
+		</div>
     </body>
 </html>

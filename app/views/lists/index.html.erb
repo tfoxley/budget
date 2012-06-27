@@ -4,26 +4,22 @@
     	<title>Lists</title>
     	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
     	<meta name="viewport" content="width=device-width, user-scalable=no" />
-    	<%= stylesheet_link_tag 'main' %>
-    	<script>
-    	    window.addEventListener("load",function() {
-              setTimeout(function(){
-                window.scrollTo(0, 1);
-              }, 0);
-            });
-        </script>
+		<%= stylesheet_link_tag 'mobile' %>
+		<%= javascript_include_tag "jquery-1.7.1.min", "jquery-rails" %>
     </head>
-    <body>
+    <body class="list">
     	<div id="header">
     		<h1>Lists</h1>
     		<span class="left"><a href="/" class="sprite home-icon"></a></span>
+			<span class="right-2"><a href="#" onclick="$('.active-mode').toggle(); $('.edit-mode').toggle(); return false;" class="sprite edit-icon"></a></span>
     		<span class="right"><a href="/lists/new" class="sprite new-icon"></a></span>
     	</div>
     	<ul>
     		<% @lists.each do |list| %>
     			<li>
-    		    	<a href="/lists/<%= list.id %>/edit" class="sprite edit-icon pad-right"></a>
     				<a class="category" href="/lists/<%= list.id %>"><%= list.name %></a>
+					<a href="/lists/<%= list.id %>/edit" class="sprite edit-icon pad-right edit-mode" style="display:none;"></a>
+					<span class="indent active-mode"><%= list.list_items.count %></span>
     			</li>
     		<% end %>
     	</ul>

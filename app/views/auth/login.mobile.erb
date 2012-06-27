@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Toolbox</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no" />
+	<link rel="apple-touch-icon" href="/images/toolbox.png">
+	<%= stylesheet_link_tag 'mobile' %>
+</head>
+<body>
+	<div id="header">
+		<h1>Login</h1>
+	</div>
+	
+	<% form_for :auth, :url => {:action => "authorize"} do |f| %>
+		<div class="form">
+			<p><%= password_field_tag :password, "", :class => "text-field", :placeholder => :Password %></p>
+			<p class="buttons"><%= check_box_tag :persist  %> <label for="persist">Remember Me</label></p>
+			<p class="buttons"><%= f.submit 'Login', :class => "button" %></p>
+		</div>
+	<% end %>
+</body>
+</html>

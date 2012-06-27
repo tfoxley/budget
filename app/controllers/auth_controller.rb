@@ -16,7 +16,13 @@ class AuthController < ApplicationController
   def authorize
     if params[:password] == PASSKEY
       if(params[:persist])
-        cookies['toolbox'] = { :value => Base64.encode64(params[:password]), :expires => 3.month.from_now }
+        cookies['toolbox'] = { 
+          :value => Base64.encode64(params[:password]), 
+          :expires => 1.year.from_now#, 
+          #:domain => controller.cookie_domain,
+          #:secure => Rails.env.production?,
+          #:httponly => true
+        }
       else
         cookies['toolbox'] = Base64.encode64(params[:password])
       end

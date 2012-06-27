@@ -4,14 +4,7 @@
     	<title>New Transaction</title>
     	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
     	<meta name="viewport" content="width=device-width, user-scalable=no" />
-    	<%= stylesheet_link_tag 'main' %>
-    	<script>
-    	    window.addEventListener("load",function() {
-              setTimeout(function(){
-                window.scrollTo(0, 1);
-              }, 0);
-            });
-        </script>
+		<%= stylesheet_link_tag 'mobile' %>
     </head>
     <body>
     	<div id="header">
@@ -34,7 +27,7 @@
     		<div class="form">
     		    <p><%= f.date_select :date, {}, :class => "select-box" %></p>
     		    <p><%= f.text_field :to, :class => "text-field", :placeholder => "To (payee)" %></p>
-    			<p><%= f.text_field :amount, :class => "text-field", :type => "number", :placeholder => :Amount %></p>
+    			<p><%= f.text_field :amount, :class => "text-field", :placeholder => :Amount %></p>
     			<p><%= f.select :category_id, @categories.collect {|c| [ c.name, c.id ] }, {}, :class => "select-box wide" %></p>
     			<p class="buttons">
     				<%= f.submit 'Create', :class => "button" %> <input type="button" class="button" onclick="window.location='/transactions/<%= params[:year] %>/<%= params[:month] %>';" value="Cancel">

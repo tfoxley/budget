@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  include Mobylette::RespondToMobileRequests
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
