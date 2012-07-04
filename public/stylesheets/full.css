@@ -232,12 +232,13 @@ body#login div#header h1 {
 
 /* Home Page Styles */
 body#home div#content ul {
+	width: 1000px;
 	background: none;
 	height: 250px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin: -165px 0 0 -425px;
+	margin: -165px 0 0 -550px;
 }
 
 body#home div#content ul li {
@@ -277,6 +278,12 @@ body#home div#content ul li div.sprite.list-icon {
 	box-shadow:inset 0px 1px 0px 0px #f7c5c0;
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fc8d83), color-stop(1, #e4685d) );
 	background:-moz-linear-gradient( center top, #fc8d83 5%, #e4685d 100% );
+}
+
+body#home div#content ul li div.sprite.savings-icon {
+	box-shadow:inset 0px 1px 0px 0px #efdcfb;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfbdfa), color-stop(1, #bc80ea) );
+	background:-moz-linear-gradient( center top, #dfbdfa 5%, #bc80ea 100% );
 }
 
 body#home div#content ul li div.sprite.user-icon {
