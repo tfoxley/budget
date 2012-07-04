@@ -26,6 +26,7 @@
             <% end %>
     		<div class="form">
     			<p><%= f.text_field :name, :class => "text-field", :placeholder => :Name %></p>
+				<p><%= f.text_field :budget_amount, :class => "text-field", :type => "number", :placeholder => :Budget %></p>
     			<p class="buttons">
     			    <%= hidden_field_tag(:month, params[:month]) %>
     			    <%= hidden_field_tag(:year, params[:year]) %>

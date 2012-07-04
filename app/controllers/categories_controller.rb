@@ -3,8 +3,40 @@ class CategoriesController < ApplicationController
   
   # GET /categories
   def index
+    @cur_date = Date.current
+    unless params[:month].blank?
+      @cur_date = Date.new(params[:year].to_i, params[:month].to_i, 1)
+    end
+    @current = @cur_date.strftime("%B %Y")
+    
+    #budgets = Budget.all.sort { |a, b| a.category.name <=> b.category.name }
+    categories = Category.find(:all, :order => "name")
+    @budgets = []
+    transactions = Transaction.find(:all, :conditions => { :date => @cur_date.beginning_of_month..@cur_date.end_of_month })
+
+    categories.each do |x|
+      trans_total = 0.0
+      transactions.each { |a| trans_total += a.amount if a.category_id == x.id }
+      budget_amount = x.budget_amount.blank? ? "-------" : x.budget_amount
+      @budgets << [x.name, budget_amount, trans_total]
+    end
+    puts @budgets
+    # build links for the next and previous months
+    next_m = (@cur_date >> 1)
+    prev_m = (@cur_date << 1)
+    @next_link = "/categories/" + next_m.strftime("%Y") + "/" + next_m.strftime("%m")
+    @prev_link = "/categories/" + prev_m.strftime("%Y") + "/" + prev_m.strftime("%m")
+    @new_link = "/categories/new/" +  @cur_date.strftime("%Y")  + "/" + @cur_date.strftime("%m")
+
+    respond_to do |format|
+      format.html # index.html.erb
+    end
+  end
+  
+  # GET /categories/:id
+  def show
     @categories = Category.find(:all, :order => "name")
-    selected = params[:category].blank? ? @categories[0] : @categories.collect { |c| c if c.id == params[:category].to_i }.compact[0]
+    selected = params[:id].blank? ? @categories[0] : Category.find(params[:id].to_i)
     
     @cur_date = Date.current
     unless params[:month].blank?
@@ -20,8 +52,8 @@ class CategoriesController < ApplicationController
     # build links for the next and previous months
     next_m = (@cur_date >> 1)
     prev_m = (@cur_date << 1)
-    @next_link = "/categories/" + next_m.strftime("%Y") + "/" + next_m.strftime("%m")
-    @prev_link = "/categories/" + prev_m.strftime("%Y") + "/" + prev_m.strftime("%m")
+    @next_link = "/categories/" + selected.id.to_s + "/" + next_m.strftime("%Y") + "/" + next_m.strftime("%m")
+    @prev_link = "/categories/" + selected.id.to_s + "/" + prev_m.strftime("%Y") + "/" + prev_m.strftime("%m")
     @new_link = "/categories/new/" +  @cur_date.strftime("%Y")  + "/" + @cur_date.strftime("%m")
     @edit_link = "#"
     unless selected.nil?
@@ -46,6 +78,9 @@ class CategoriesController < ApplicationController
   # GET /categories/1/edit
   def edit
     @category = Category.find(params[:id])
+    unless @category.budget_amount.blank?
+      @category.budget_amount = sprintf( "%0.02f", @category.budget_amount)
+    end
   end
 
   # POST /categories

@@ -1,24 +1,23 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-    	<title>Totals</title>
+    	<title>Budget</title>
     	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
     	<meta name="viewport" content="width=device-width, user-scalable=no" />
 		<%= stylesheet_link_tag 'mobile' %>
     </head>
     <body>
     	<div id="header">
-    		<h1>Totals</h1>
+    		<h1>Budget</h1>
     		<span class="left"><a href="/" class="sprite home-icon"></a></span>
-    		<span class="right-2"><a href="<%= @edit_link %>" class="sprite edit-icon"></a></span>
     		<span class="right"><a href="<%= @new_link %>" class="sprite new-icon"></a></span>
     	</div>
     	
     	<div id="nav">
-        	<ul>
-        		<li><a href="/transactions"><div class="sprite transactions-icon pad-right">Transxns</div></a></li>
-        		<li><a href="/budgets/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite budget-icon pad-right">Budget</div></a></li>
-        		<li class="active"><a href="/categories/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite totals-icon pad-right">Categories</div></a></li>
+    	    <ul>
+        		<li><a href="/transactions/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite transactions-icon pad-right">Transxns</div></a></li>
+        		<li class="active"><a href="/categories/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite budget-icon pad-right">Budget</div></a></li>
+        		<li><a href="/categories/<%= Category.first.id %>/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite totals-icon pad-right">Categories</div></a></li>
         	</ul>
         </div>
     	
@@ -28,37 +27,43 @@
     			<%= @current %>
     			<a class="next sprite forward-icon" href="<%= @next_link %>"></a>
     		</li>
-    		<li class="selector">
-    		    <script type="text/javascript">
-    				function change(select) {
-    					var selected = select[select.selectedIndex].value;
-    					var path = '/categories/<%= params["year"] %>/<%= params["month"] %>?category=' + selected;
-    					window.location = path;
-    				}
-    			</script>
-    			<select name="category" onchange="change(this); return false;">
-    				<% @categories.each do |category| %>
-    					<option value="<%= category.id %>" <% if category.id == params['category'].to_i %>selected="selected"<% end %>><%= category.name %></option>
-    				<% end %>
-    			</select>
+    		<li class="header">
+    		    <p class="category">Category</p>
+    		    <p class="budget">Budget</p>
+				<p class="spent">Spent</p>
+				<p class="remaining">Remaining</p>
     		</li>
-    		<% @transactions.each do |transaction| %>
-    			<li class="transaction">
-    				<a name="<%= transaction.id %>"> </a>
-    				<a href="/transactions/<%= transaction.id %>/edit/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>">
-    					<span class="info">
-    						<span class="to"><%=h transaction.to %></span>
-    						<br/>
-    						<%=h transaction.category.name %>
-    					</span>
-    				</a>
-    				<span class="data">
-    					<%= number_to_currency(transaction.amount) %>
-    					<br/>
-    					<%=h transaction.date.strftime("%b %d") %>
-    				</span>
+    		<% budget_total = 0.0 %>
+    		<% spent_total = 0.0 %>
+    		<% remaining_total = 0.0 %>
+    		<% @budgets.each do |value| %>
+    		    <% remaining = numeric?(value[1]) ? value[1] - value[2] : 0.0 %>
+    		    <% budget_total += numeric?(value[1]) ? value[1] : 0.0 %>
+        		<% spent_total += value[2] %>
+        		<% remaining_total += remaining %>
+    			<li class="budget">
+    			    <% if value[3] != 0 %>
+    				    <a href="/budgets/<%= value[3] %>/edit/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>">
+    				<% end %>
+    					<p class="category"><%= value[0] %></p>
+    				<% if value[3] != 0 %>
+    				    </a>
+    				<% end %>
+    				<p class="budget right"><%= numeric?(value[1]) ? number_to_currency(value[1]) : value[1] %></p>
+    				<p class="spent right"><%= number_to_currency(value[2]) %></p>
+    				<p class="remaining right <%= remaining > 0.0 ? 'positive' : 'negative' %>">
+    				    <%= numeric?(value[1]) ? number_to_currency(remaining) : value[1] %>
+    				</p>
     			</li>
     		<% end %>
+    		<li class="header">
+    		    <p class="category">Total</p>
+    		    <p class="budget right"><%= number_to_currency(budget_total) %></p>
+				<p class="spent right"><%= number_to_currency(spent_total) %></p>
+				<p class="remaining right <%= remaining_total > 0.0 ? 'positive' : 'negative' %>">
+				    <%= number_to_currency(remaining_total) %>
+				</p>
+    		</li>
     	</ul>
     </body>
 </html>

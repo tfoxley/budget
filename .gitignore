@@ -5,3 +5,4 @@ tmp/
 
 config/environment.rb
 config/environment.rb
+.DS_Store

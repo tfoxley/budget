@@ -10,19 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120201140029) do
-
-  create_table "budgets", :force => true do |t|
-    t.float    "amount"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "category_id"
-  end
+ActiveRecord::Schema.define(:version => 20120704031121) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "budget_amount"
   end
 
   create_table "inventories", :force => true do |t|

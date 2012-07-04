@@ -3,6 +3,7 @@ Toolbox::Application.routes.draw do
   resources :categories
   match 'categories/:year/:month' => 'categories#index'
   match 'categories/new/:year/:month' => 'categories#new'
+  match 'categories/:id/:year/:month' => 'categories#show'
   match 'categories/:id/edit/:year/:month' => 'categories#edit'
 
   resources :transactions
@@ -11,11 +12,6 @@ Toolbox::Application.routes.draw do
   match 'transactions/:year/:month' => 'transactions#index'
   match 'transactions/new/:year/:month' => 'transactions#new'
   match 'transactions/:id/edit/:year/:month' => 'transactions#edit'
-
-  resources :budgets
-  match 'budgets/:year/:month' => 'budgets#index'
-  match 'budgets/new/:year/:month' => 'budgets#new'
-  match 'budgets/:id/edit/:year/:month' => 'budgets#edit'
 
   match 'savings_accounts/add_subtract_form/:id' => 'savings_accounts#add_subtract_form'
   match 'savings_accounts/add_subtract' => 'savings_accounts#add_subtract'
