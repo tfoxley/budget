@@ -11,8 +11,8 @@ Toolbox::Application.routes.draw do
   resources :transactions
   match 'transactions/reconcile/:id' => 'transactions#reconcile'
   match 'transactions/unreconcile/:id' => 'transactions#unreconcile'
-  match 'transactions/:year/:month' => 'transactions#index'
-  match 'transactions/new/:year/:month' => 'transactions#new'
+  match 'transactions/new/:account_id/:year/:month' => 'transactions#new'
+  match 'transactions/:account_id/:year/:month' => 'transactions#index'
   match 'transactions/:id/edit/:year/:month' => 'transactions#edit'
 
   match 'savings_accounts/add_subtract_form/:id' => 'savings_accounts#add_subtract_form'

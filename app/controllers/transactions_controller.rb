@@ -9,16 +9,20 @@ class TransactionsController < ApplicationController
     end
     @current = @cur_date.strftime("%B %Y")
     
-    @transactions = Transaction.find(:all, :conditions => { :date => @cur_date.beginning_of_month..@cur_date.end_of_month }, :order => "date desc,id desc")
+    @accounts = Account.find(:all, :order => "name")
+    @selected_account = @accounts.select {|a| a.default}.first
+    @selected_account = Account.find(params[:account_id]) if !params[:account_id].blank?
+    
+    @transactions = Transaction.find(:all, :conditions => { :date => @cur_date.beginning_of_month..@cur_date.end_of_month, :account_id => @selected_account.id }, :order => "date desc,id desc")
     @current_balance = 0.0
     @transactions.each { |x| @current_balance += x.amount unless x.amount.blank? }
     
     # build links for the next and previous months
     next_m = (@cur_date >> 1)
     prev_m = (@cur_date << 1)
-    @next_link = "/transactions/" + next_m.strftime("%Y") + "/" + next_m.strftime("%m")
-    @prev_link = "/transactions/" + prev_m.strftime("%Y") + "/" + prev_m.strftime("%m")
-    @new_link = "/transactions/new/" +  @cur_date.strftime("%Y")  + "/" + @cur_date.strftime("%m")
+    @next_link = "/transactions/" + @selected_account.id.to_s + "/" + next_m.strftime("%Y") + "/" + next_m.strftime("%m")
+    @prev_link = "/transactions/" + @selected_account.id.to_s + "/" + prev_m.strftime("%Y") + "/" + prev_m.strftime("%m")
+    @new_link = "/transactions/new/" + @selected_account.id.to_s + "/" +  @cur_date.strftime("%Y")  + "/" + @cur_date.strftime("%m")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -31,7 +35,8 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new
     @categories = Category.find(:all, :order => "name")
     @accounts = Account.find(:all, :order => "name")
-    @default_account = @accounts.select {|a| a.default}.first
+    @selected_account = @accounts.select {|a| a.default}.first
+    @selected_account = Account.find(params[:account_id]) if !params[:account_id].blank?
 
     respond_to do |format|
       format.html # new.html.erb
