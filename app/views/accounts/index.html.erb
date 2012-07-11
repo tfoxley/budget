@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    	<title>Accounts</title>
+    	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    	<meta name="viewport" content="width=device-width, user-scalable=no" />
+		<%= stylesheet_link_tag 'mobile' %>
+    </head>
+    <body>
+    	<div id="header">
+    		<h1>Accounts</h1>
+    		<span class="left"><a href="/" class="sprite home-icon"></a></span>
+    		<span class="right"><a href="/accounts/new" class="sprite new-icon"></a></span>
+    	</div>
+    	
+    	<div id="nav">
+        	<ul>
+        		<li><a href="/transactions"><div class="sprite transactions-icon pad-right">Transxns</div></a></li>
+        		<li><a href="/categories"><div class="sprite budget-icon pad-right">Budget</div></a></li>
+        		<li><a href="/categories/<%= Category.first.id %>"><div class="sprite categories-icon pad-right">Categories</div></a></li>
+				<li class="active"><a href="/accounts"><div class="sprite accounts-icon pad-right">Accounts</div></a></li>
+        	</ul>
+        </div>
+    	
+    	<ul class="trans-list">
+    		<% @accounts.each do |account| %>
+    			<li class="transaction" id="<%= account.id %>">
+    				<a href="/accounts/<%= account.id %>/edit">
+    					<span class="account-name">
+    						<span class="to"><%=h account.name %></span>
+    					</span>
+    				</a>
+    				<span class="data">
+    					<span class="actual"><%= number_to_currency(account.actual_balance) %></span>
+    					<br/>
+    					<span class="reconciled"><%= number_to_currency(account.reconciled_balance) %></span>
+    				</span>
+    			</li>
+    		<% end %>
+    	</ul>
+    </body>
+</html>

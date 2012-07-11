@@ -7,12 +7,18 @@ class ListItemsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
+      format.mobile
     end
   end
 
   # GET /list_items/1/edit
   def edit
     @list_item = ListItem.find(params[:id])
+    
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.mobile
+    end
   end
 
   # POST /list_items
@@ -22,8 +28,10 @@ class ListItemsController < ApplicationController
     respond_to do |format|
       if @list_item.save
         format.html { redirect_to('/lists/' + @list_item.list_id.to_s, :notice => 'List item was successfully created.') }
+        format.mobile { redirect_to('/lists/' + @list_item.list_id.to_s, :notice => 'List item was successfully created.') }
       else
         format.html { render :action => "new" }
+        format.mobile { render :action => "new" }
       end
     end
   end
@@ -35,8 +43,10 @@ class ListItemsController < ApplicationController
     respond_to do |format|
       if @list_item.update_attributes(params[:list_item])
         format.html { redirect_to('/lists/' + @list_item.list_id.to_s, :notice => 'List item was successfully updated.') }
+        format.mobile { redirect_to('/lists/' + @list_item.list_id.to_s, :notice => 'List item was successfully updated.') }
       else
         format.html { render :action => "edit" }
+        format.mobile { render :action => "edit" }
       end
     end
   end
@@ -70,6 +80,7 @@ class ListItemsController < ApplicationController
         format.js { render :template => "/list_items/quick_add.rjs" }
       else
         format.html { render :action => "new" }
+        format.mobile { render :action => "new" }
       end
     end
   end
@@ -83,6 +94,7 @@ class ListItemsController < ApplicationController
     respond_to do |format|
       format.js { render :template => "/list_items/quick_delete.rjs" }
       format.html { redirect_to('/lists/' + list_id.to_s, :notice => 'List item was successfully deleted.') }
+      format.mobile { redirect_to('/lists/' + list_id.to_s, :notice => 'List item was successfully deleted.') }
     end
   end
 end

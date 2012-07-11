@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    	<title>Edit Account</title>
+    	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    	<meta name="viewport" content="width=device-width, user-scalable=no" />
+		<%= stylesheet_link_tag 'mobile' %>
+    </head>
+    <body>
+    	<div id="header">
+    		<h1>Edit Account</h1>
+    		<span class="left"><a href="/accounts" class="sprite back-icon"></a></span>
+    		<span class="left-2"><a href="/" class="sprite home-icon"></a></span>
+    	</div>
+	
+    	<% form_for(@account) do |f| %>
+    	    <% if @account.errors.any? %>
+                <div id="error_explanation">
+                    <h2>Please fix errors:</h2>
+                    <ul>
+                    <% @account.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                    </ul>
+                </div>
+            <% end %>
+			<div class="form">
+    			<p><%= f.text_field :name, :class => "text-field", :placeholder => :Name %></p>
+    			<p><%= f.text_field :actual_balance, :class => "text-field", :type => "number", :placeholder => "Actual Balance" %></p>
+				<p><%= f.text_field :reconciled_balance, :class => "text-field", :type => "number", :placeholder => "Reconciled Balance" %></p>
+    			<p><%= f.check_box :default, :class => "checkbox" %> Default Account</p>
+    			<p class="buttons">
+    				<%= f.submit 'Update', :class => "button" %> <input type="button" class="button" onclick="window.location='/accounts';" value="Cancel">
+    			</p>
+    		</div>
+    	<% end %>
+
+		<p class="buttons delete">
+    	    <%= button_to "DELETE", { :controller => :accounts, :action => 'destroy' }, { :id => @account.id, :confirm => "Are you sure?", :class => "delete-button", :method => :delete } %>
+    	</p>
+    </body>
+</html>

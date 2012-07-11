@@ -18,7 +18,8 @@
         	<ul>
         		<li><a href="/transactions/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite transactions-icon pad-right">Transxns</div></a></li>
         		<li><a href="/categories/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite budget-icon pad-right">Budget</div></a></li>
-        		<li class="active"><a href="/categories/<%= Category.first.id %>/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite totals-icon pad-right">Categories</div></a></li>
+        		<li class="active"><a href="/categories/<%= Category.first.id %>/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite categories-icon pad-right">Categories</div></a></li>
+				<li><a href="/accounts"><div class="sprite accounts-icon pad-right">Accounts</div></a></li>
         	</ul>
         </div>
     	

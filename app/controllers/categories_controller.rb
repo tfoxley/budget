@@ -30,6 +30,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.mobile
     end
   end
   
@@ -62,7 +63,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @categories }
+      format.mobile
     end
   end
 
@@ -72,6 +73,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
+      format.mobile
     end
   end
 
@@ -80,6 +82,11 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     unless @category.budget_amount.blank?
       @category.budget_amount = sprintf( "%0.02f", @category.budget_amount)
+    end
+    
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.mobile
     end
   end
 
@@ -90,8 +97,10 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       if @category.save
         format.html { redirect_to(categories_url + "/" + params[:year] + "/" + params[:month], :notice => 'Category was successfully created.') }
+        format.mobile { redirect_to(categories_url + "/" + params[:year] + "/" + params[:month], :notice => 'Category was successfully created.') }
       else
         format.html { render :action => "new" }
+        format.mobile { render :action => "new" }
       end
     end
   end
@@ -103,8 +112,10 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       if @category.update_attributes(params[:category])
         format.html { redirect_to(categories_url + "/" + params[:year] + "/" + params[:month], :notice => 'Category was successfully updated.') }
+        format.mobile { redirect_to(categories_url + "/" + params[:year] + "/" + params[:month], :notice => 'Category was successfully updated.') }
       else
         format.html { render :action => "edit" }
+        format.mobile { render :action => "edit" }
       end
     end
   end
@@ -116,6 +127,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(categories_url) }
+      format.mobile { redirect_to(categories_url) }
     end
   end
 end

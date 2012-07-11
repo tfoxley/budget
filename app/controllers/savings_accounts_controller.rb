@@ -9,6 +9,7 @@ class SavingsAccountsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.mobile
     end
   end
 
@@ -18,6 +19,7 @@ class SavingsAccountsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
+      format.mobile
     end
   end
 
@@ -28,8 +30,10 @@ class SavingsAccountsController < ApplicationController
     respond_to do |format|
       if @savings_account.save
         format.html { redirect_to(savings_accounts_url) }
+        format.mobile { redirect_to(savings_accounts_url) }
       else
         format.html { render :action => "new" }
+        format.mobile { render :action => "new" }
       end
     end
   end
@@ -69,6 +73,7 @@ class SavingsAccountsController < ApplicationController
     respond_to do |format|
       format.js { render :template => "/savings_accounts/quick_delete.rjs" }
       format.html { redirect_to('/savings_accounts', :notice => 'List item was successfully deleted.') }
+      format.mobile { redirect_to('/savings_accounts', :notice => 'List item was successfully deleted.') }
     end
   end
 end

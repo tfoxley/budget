@@ -7,6 +7,7 @@ class InventoriesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.mobile
     end
   end
 
@@ -17,6 +18,7 @@ class InventoriesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.mobile
     end
   end
 
@@ -26,12 +28,18 @@ class InventoriesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
+      format.mobile
     end
   end
 
   # GET /inventories/1/edit
   def edit
     @inventory = Inventory.find(params[:id])
+    
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.mobile
+    end
   end
 
   # POST /inventories
@@ -41,8 +49,10 @@ class InventoriesController < ApplicationController
     respond_to do |format|
       if @inventory.save
         format.html { redirect_to(@inventory, :notice => 'Inventory was successfully created.') }
+        format.mobile { redirect_to(@inventory, :notice => 'Inventory was successfully created.') }
       else
         format.html { render :action => "new" }
+        format.mobile { render :action => "new" }
       end
     end
   end
@@ -54,8 +64,10 @@ class InventoriesController < ApplicationController
     respond_to do |format|
       if @inventory.update_attributes(params[:inventory])
         format.html { redirect_to(@inventory, :notice => 'Inventory was successfully updated.') }
+        format.mobile { redirect_to(@inventory, :notice => 'Inventory was successfully updated.') }
       else
         format.html { render :action => "edit" }
+        format.mobile { render :action => "edit" }
       end
     end
   end
@@ -67,6 +79,7 @@ class InventoriesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(inventories_url) }
+      format.mobile { redirect_to(inventories_url) }
     end
   end
 end

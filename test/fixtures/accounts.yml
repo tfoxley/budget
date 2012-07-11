@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  actual_balance: 1.5
+  reconciled_balance: 1.5
+  default: false
+
+two:
+  name: MyString
+  actual_balance: 1.5
+  reconciled_balance: 1.5
+  default: false

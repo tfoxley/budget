@@ -318,6 +318,7 @@ div#error_explanation {
 
 div#error_explanation h2 {
     font-size: 20px;
+	margin: 0;
 }
 
 div#error_explanation li {
@@ -326,6 +327,7 @@ div#error_explanation li {
     list-style-type: square;
     color: red;
     margin-left: 18px;
+	padding: 0;
 }
 /* Form styles */
 
@@ -402,24 +404,71 @@ div#error_explanation li {
 
 /* Sprites styles */
 .sprite { display: block; background: url('/images/mobile-icons-sprite.png') no-repeat; float: left; }
-.money-envelope-icon { background-position: -10px -0px; width: 20px; height: 20px; }
-.new-icon { background-position: -10px -30px; width: 20px; height: 20px; }
-.add-sub-icon { background-position: -10px -60px; width: 20px; height: 20px; }
-.money-bag-icon { background-position: -10px -90px; width: 20px; height: 20px; }
-.delete-icon { background-position: -10px -120px; width: 20px; height: 20px; }
-.cart-icon { background-position: -10px -150px; width: 20px; height: 20px; }
-.back-icon { background-position: -10px -180px; width: 20px; height: 20px; }
-.plus-icon { background-position: -10px -210px; width: 20px; height: 20px; }
-.edit-icon { background-position: -10px -240px; width: 20px; height: 20px; }
-.forward-icon { background-position: -10px -270px; width: 20px; height: 20px; }
-.list-icon { background-position: -10px -300px; width: 20px; height: 20px; }
-.minus-icon { background-position: -10px -330px; width: 20px; height: 20px; }
-.home-icon { background-position: -10px -360px; width: 20px; height: 20px; }
-.totals-icon { background-position: -10px -380px; width: 16px; height: 16px; }
-.transactions-icon { background-position: -10px -406px; width: 16px; height: 16px; }
-.budget-icon { background-position: -10px -432px; width: 16px; height: 16px; }
+.accounts-icon{ background-position: 0 10px; width: 16px; height: 16px; } 
+.add-sub-icon{ background-position: 0 -36px; width: 20px; height: 20px; } 
+.back-icon{ background-position: 0 -76px; width: 20px; height: 20px; } 
+.budget-icon{ background-position: 0 -106px; width: 16px; height: 16px; } 
+.cart-icon{ background-position: 0 -152px; width: 30px; height: 30px; } 
+.categories-icon{ background-position: 0 -192px; width: 16px; height: 16px; } 
+.checkmark-icon{ background-position: 0 -238px; width: 30px; height: 30px; } 
+.delete-icon{ background-position: 0 -288px; width: 20px; height: 20px; } 
+.dollarsign-icon{ background-position: 0 -328px; width: 30px; height: 30px; } 
+.edit-icon{ background-position: 0 -378px; width: 20px; height: 20px; } 
+.forward-icon{ background-position: 0 -418px; width: 20px; height: 20px; } 
+.home-icon{ background-position: 0 -458px; width: 20px; height: 20px; } 
+.minus-icon{ background-position: 0 -498px; width: 20px; height: 20px; } 
+.new-icon{ background-position: 0 -538px; width: 20px; height: 20px; } 
+.piggybank-icon{ background-position: 0 -578px; width: 30px; height: 30px; } 
+.plus-icon{ background-position: 0 -628px; width: 20px; height: 20px; } 
+.silhouette-icon{ background-position: 0 -668px; width: 30px; height: 30px; } 
+.transactions-icon{ background-position: 0 -708px; width: 16px; height: 16px; } 
 /* Sprites styles */
 
+/* Homepage styles */
+body#home ul li a {
+	line-height: 30px;
+}
+body#home ul li div.icon {
+	height: 30px;
+	width: 30px;
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fff), color-stop(1, #aaa) );
+	background: -moz-linear-gradient( center top, ##fff 5%, #aaa 100% );
+	border-radius: 6px;
+	box-shadow: inset 0px 2px 0px 0px #DDD;
+	margin-right: 10px;
+	float: left;
+}
+
+body#home ul li div.blue-icon {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #bddbfa), color-stop(1, #80b5ea) );
+	background:-moz-linear-gradient( center top, #bddbfa 5%, #80b5ea 100% );
+	box-shadow: inset 0px 2px 0px 0px #dcecfb;
+}
+
+body#home ul li div.green-icon {
+	box-shadow:inset 0px 1px 0px 0px #a4e271;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #89c403), color-stop(1, #77a809) );
+	background:-moz-linear-gradient( center top, #89c403 5%, #77a809 100% );
+}
+
+body#home ul li div.red-icon {
+	box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fc8d83), color-stop(1, #e4685d) );
+	background:-moz-linear-gradient( center top, #fc8d83 5%, #e4685d 100% );
+}
+
+body#home ul li div.purple-icon {
+	box-shadow:inset 0px 1px 0px 0px #efdcfb;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfbdfa), color-stop(1, #bc80ea) );
+	background:-moz-linear-gradient( center top, #dfbdfa 5%, #bc80ea 100% );
+}
+
+body#home ul li div.orange-icon {
+	box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25) );
+	background:-moz-linear-gradient( center top, #ffc477 5%, #fb9e25 100% );
+}
+/* Homepage styles */
 
 /* Budget styles*/
 li.selector {
@@ -514,7 +563,7 @@ li p.positive {
     text-align: center;
 	float: left;
 	list-style-type: none;
-	width: 29%;
+	width: 21%;
 	height: 36px;
 	border: none;
 	padding: 2px 0 0 0;
@@ -572,8 +621,19 @@ li span.data {
     text-align: right;
 }
 
+li span.data span.actual,
+li span.data span.reconciled {
+	float: right;
+}
+
 li span.info span.to {
     font-weight: bold;
+}
+
+span.account-name {
+	float: left;
+	font-size: 20px;
+	line-height: 40px;
 }
 
 ul.trans-list {

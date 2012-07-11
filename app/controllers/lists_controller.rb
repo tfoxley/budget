@@ -7,6 +7,7 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.mobile
     end
   end
 
@@ -19,6 +20,7 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.mobile
     end
   end
 
@@ -28,12 +30,18 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
+      format.mobile
     end
   end
 
   # GET /lists/1/edit
   def edit
     @list = List.find(params[:id])
+    
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.mobile
+    end
   end
 
   # POST /lists
@@ -43,8 +51,10 @@ class ListsController < ApplicationController
     respond_to do |format|
       if @list.save
         format.html { redirect_to("/lists", :notice => 'List was successfully created.') }
+        format.mobile { redirect_to("/lists", :notice => 'List was successfully created.') }
       else
         format.html { render :action => "new" }
+        format.mobile { render :action => "new" }
       end
     end
   end
@@ -56,8 +66,10 @@ class ListsController < ApplicationController
     respond_to do |format|
       if @list.update_attributes(params[:list])
         format.html { redirect_to("/lists", :notice => 'List was successfully updated.') }
+        format.mobile { redirect_to("/lists", :notice => 'List was successfully updated.') }
       else
         format.html { render :action => "edit" }
+        format.mobile { render :action => "edit" }
       end
     end
   end
@@ -70,6 +82,7 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to('/lists', :notice => 'List was successfully deleted.') }
+      format.mobile { redirect_to('/lists', :notice => 'List was successfully deleted.') }
     end
   end
 end

@@ -1,5 +1,7 @@
 Toolbox::Application.routes.draw do
   
+  resources :accounts
+
   resources :categories
   match 'categories/:year/:month' => 'categories#index'
   match 'categories/new/:year/:month' => 'categories#new'
