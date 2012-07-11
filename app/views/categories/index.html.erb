@@ -38,22 +38,22 @@
     		<% spent_total = 0.0 %>
     		<% remaining_total = 0.0 %>
     		<% @budgets.each do |value| %>
-    		    <% remaining = numeric?(value[1]) ? value[1] - value[2] : 0.0 %>
-    		    <% budget_total += numeric?(value[1]) ? value[1] : 0.0 %>
-        		<% spent_total += value[2] %>
+    		    <% remaining = numeric?(value[2]) ? value[2] - value[3] : 0.0 %>
+    		    <% budget_total += numeric?(value[2]) ? value[2] : 0.0 %>
+        		<% spent_total += value[3] %>
         		<% remaining_total += remaining %>
     			<li class="budget">
-    			    <% if value[3] != 0 %>
-    				    <a href="/budgets/<%= value[3] %>/edit/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>">
+    			    <% if value[4] != 0 %>
+    				    <a href="/categories/<%= value[0] %>/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>">
     				<% end %>
-    					<p class="category"><%= value[0] %></p>
-    				<% if value[3] != 0 %>
+    					<p class="category"><%= value[1] %></p>
+    				<% if value[4] != 0 %>
     				    </a>
     				<% end %>
-    				<p class="budget right"><%= numeric?(value[1]) ? number_to_currency(value[1]) : value[1] %></p>
-    				<p class="spent right"><%= number_to_currency(value[2]) %></p>
+    				<p class="budget right"><%= numeric?(value[2]) ? number_to_currency(value[2]) : value[2] %></p>
+    				<p class="spent right"><%= number_to_currency(value[3]) %></p>
     				<p class="remaining right <%= remaining > 0.0 ? 'positive' : 'negative' %>">
-    				    <%= numeric?(value[1]) ? number_to_currency(remaining) : value[1] %>
+    				    <%= numeric?(value[2]) ? number_to_currency(remaining) : value[2] %>
     				</p>
     			</li>
     		<% end %>

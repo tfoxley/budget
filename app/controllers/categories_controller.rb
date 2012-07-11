@@ -18,7 +18,7 @@ class CategoriesController < ApplicationController
       trans_total = 0.0
       transactions.each { |a| trans_total += a.amount if a.category_id == x.id }
       budget_amount = x.budget_amount.blank? ? "-------" : x.budget_amount
-      @budgets << [x.name, budget_amount, trans_total]
+      @budgets << [x.id, x.name, budget_amount, trans_total]
     end
     puts @budgets
     # build links for the next and previous months
