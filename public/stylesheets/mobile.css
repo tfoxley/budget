@@ -669,6 +669,12 @@ li.account-picker {
 	text-align: center;
 }
 
+li.balances {
+	font-size: 14px;
+	height: 44px;
+	color: #777;
+}
+
 li.account-picker select.select-box {
     font-size: 18px;
     border-color: #aaa;

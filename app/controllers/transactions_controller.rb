@@ -14,8 +14,6 @@ class TransactionsController < ApplicationController
     @selected_account = Account.find(params[:account_id]) if !params[:account_id].blank?
     
     @transactions = Transaction.find(:all, :conditions => { :date => @cur_date.beginning_of_month..@cur_date.end_of_month, :account_id => @selected_account.id }, :order => "date desc,id desc")
-    @current_balance = 0.0
-    @transactions.each { |x| @current_balance += x.amount unless x.amount.blank? }
     
     # build links for the next and previous months
     next_m = (@cur_date >> 1)

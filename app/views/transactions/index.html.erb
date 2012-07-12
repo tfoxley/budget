@@ -49,9 +49,12 @@
     			<%= @current %>
     			<a class="next sprite forward-icon" href="<%= @next_link %>"></a>
     		</li>
-    		<li>
-    			<span class="info">Balance</span>
-    			<span class="data"><%= number_to_currency(@current_balance) %></span>
+    		<li class="balances">
+    			<span class="info">Actual Balance</span>
+    			<span class="data"><%= number_to_currency(@selected_account.actual_balance) %></span>
+				<br/>
+				<span class="info">Reconciled Balance</span>
+    			<span class="data"><%= number_to_currency(@selected_account.reconciled_balance) %></span>
     		</li>
     		<% @transactions.each do |transaction| %>
     			<li class="transaction" id="<%= transaction.id %>">
