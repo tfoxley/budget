@@ -9,7 +9,7 @@
     <body>
     	<div id="header">
     		<h1>New Transaction</h1>
-    		<span class="left"><a href="/transactions/<%= params[:year] %>/<%= params[:month] %>" class="sprite back-icon"></a></span>
+    		<span class="left"><a href="/transactions/<%= @selected_account.id %>/<%= params[:year] %>/<%= params[:month] %>" class="sprite back-icon"></a></span>
     		<span class="left-2"><a href="/" class="sprite home-icon"></a></span>
     	</div>
 	

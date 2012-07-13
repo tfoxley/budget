@@ -68,12 +68,14 @@ class TransactionsController < ApplicationController
     respond_to do |format|
       if @transaction.save
         format.html {
-          redirect_to(transactions_url + "/" + @transaction.date.strftime("%Y") + 
-              "/" + @transaction.date.strftime("%m") + "#" + @transaction.id.to_s)
+          redirect_to(transactions_url + "/" + @transaction.account_id.to_s + "/" + 
+              @transaction.date.strftime("%Y") + "/" +  @transaction.date.strftime("%m") + 
+              "#" + @transaction.id.to_s)
         }
         format.mobile {
-          redirect_to(transactions_url + "/" + @transaction.date.strftime("%Y") + 
-              "/" + @transaction.date.strftime("%m") + "#" + @transaction.id.to_s)
+          redirect_to(transactions_url + "/" + @transaction.account_id.to_s + "/" + 
+              @transaction.date.strftime("%Y") + "/" +  @transaction.date.strftime("%m") + 
+              "#" + @transaction.id.to_s)
         }
       else
         @categories = Category.find(:all, :order => "name")
@@ -89,12 +91,12 @@ class TransactionsController < ApplicationController
     
     # Update account balance
     prev_account = Account.find(@transaction.account_id)
-    new_account = Account.find(params[:account_id])
+    new_account = Account.find(params[:transaction][:account_id].to_i)
     prev_account.actual_balance = prev_account.actual_balance + @transaction.amount
-    new_account.actual_balance = new_account.actual_balance - params[:amount]
+    new_account.actual_balance = new_account.actual_balance - params[:transaction][:amount].to_f
     if @transaction.reconciled
       prev_account.reconciled_balance = prev_account.reconciled_balance + @transaction.amount
-      new_account.reconciled_balance = new_account.reconciled_balance - params[:amount]
+      new_account.reconciled_balance = new_account.reconciled_balance - params[:transaction][:amount].to_f
     end
     prev_account.save
     new_account.save
@@ -102,12 +104,14 @@ class TransactionsController < ApplicationController
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
         format.html {
-          redirect_to(transactions_url + "/" + @transaction.date.strftime("%Y") + 
-              "/" + @transaction.date.strftime("%m") + "#" + @transaction.id.to_s)
+          redirect_to(transactions_url + "/" + @transaction.account_id.to_s + "/" + 
+              @transaction.date.strftime("%Y") + "/" +  @transaction.date.strftime("%m") + 
+              "#" + @transaction.id.to_s)
         }
         format.mobile {
-          redirect_to(transactions_url + "/" + @transaction.date.strftime("%Y") + 
-              "/" + @transaction.date.strftime("%m") + "#" + @transaction.id.to_s)
+          redirect_to(transactions_url + "/" + @transaction.account_id.to_s + "/" + 
+              @transaction.date.strftime("%Y") + "/" +  @transaction.date.strftime("%m") + 
+              "#" + @transaction.id.to_s)
         }
       else
         format.html { render :action => "edit" }
