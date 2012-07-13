@@ -170,8 +170,14 @@ class TransactionsController < ApplicationController
     account.save
 
     respond_to do |format|
-      format.html { redirect_to(transactions_url) }
-      format.mobile { redirect_to(transactions_url) }
+      format.html { 
+        redirect_to(transactions_url + "/" + @transaction.account_id.to_s + "/" + 
+          @transaction.date.strftime("%Y") + "/" +  @transaction.date.strftime("%m"))
+      }
+      format.mobile { 
+        redirect_to(transactions_url + "/" + @transaction.account_id.to_s + "/" + 
+          @transaction.date.strftime("%Y") + "/" +  @transaction.date.strftime("%m"))
+      }
     end
   end
 end
