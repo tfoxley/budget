@@ -34,7 +34,12 @@
         </div>
     	
     	<ul class="trans-list">
-    		<li class="account-picker">
+			<li class="selector">
+    			<a class="prev sprite back-icon" href="<%= @prev_link %>"></a>
+    			<%= @current %>
+    			<a class="next sprite forward-icon" href="<%= @next_link %>"></a>
+    		</li>
+			<li class="account-picker">
 				<script type="text/javascript">
     				function change(select) {
     					var selected = select[select.selectedIndex].value;
@@ -44,11 +49,6 @@
     			</script>
 				<%= select :transaction, :account_id, @accounts.collect {|c| [ c.name, c.id ] }, {:selected => @selected_account.id}, {:class => "select-box", :onchange => "change(this);"} %>
 			</li>
-			<li class="selector">
-    			<a class="prev sprite back-icon" href="<%= @prev_link %>"></a>
-    			<%= @current %>
-    			<a class="next sprite forward-icon" href="<%= @next_link %>"></a>
-    		</li>
     		<li class="balances">
     			<span class="info">Actual Balance</span>
     			<span class="data"><%= number_to_currency(@selected_account.actual_balance) %></span>
@@ -57,7 +57,7 @@
     			<span class="data"><%= number_to_currency(@selected_account.reconciled_balance) %></span>
     		</li>
     		<% @transactions.each do |transaction| %>
-    			<li class="transaction" id="<%= transaction.id %>">
+    			<li class="transaction <%= transaction.transaction_type_id == TransactionType::DEPOSIT ? 'deposit' : '' %>" id="<%= transaction.id %>">
     				<input type="checkbox" class="reconcile" id="checkbox-<%= transaction.id %>" data-id="<%= transaction.id %>" data-action="<%= transaction.reconciled ? 'unreconcile' : 'reconcile' %>" name="reconciled" <%= transaction.reconciled ? "checked" : "" %>>
     				<a name="<%= transaction.id %>"> </a>
     				<a href="/transactions/<%= transaction.id %>/edit/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>">
@@ -67,11 +67,9 @@
     						<%=h transaction.account.name %> : <%=h transaction.category.name %>
     					</span>
     				</a>
-    				<span class="data">
-    					<%= number_to_currency(transaction.amount) %>
-    					<br/>
-    					<%=h transaction.date.strftime("%b %d") %>
-    				</span>
+    				<span class="data"><%= number_to_currency(transaction.amount) %></span>
+    				<br/>
+    				<span class="data"><%=h transaction.date.strftime("%b %d") %></span>
     			</li>
     		<% end %>
     	</ul>

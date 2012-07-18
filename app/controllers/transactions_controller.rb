@@ -31,8 +31,9 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   def new
     @transaction = Transaction.new
-    @categories = Category.find(:all, :order => "name")
-    @accounts = Account.find(:all, :order => "name")
+    @trans_types = TransactionType.find(:all, :order => :name)
+    @categories = Category.find(:all, :order => :name)
+    @accounts = Account.find(:all, :order => :name)
     @selected_account = @accounts.select {|a| a.default}.first
     @selected_account = Account.find(params[:account_id]) if !params[:account_id].blank?
 
@@ -46,6 +47,7 @@ class TransactionsController < ApplicationController
   def edit
     @transaction = Transaction.find(params[:id])
     @transaction.amount = sprintf( "%0.02f", @transaction.amount)
+    @trans_types = TransactionType.find(:all, :order => :name)
     @categories = Category.find(:all, :order => "name")
     @accounts = Account.find(:all, :order => "name")
     
@@ -60,9 +62,10 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(params[:transaction])
     
     # Update account balance
+    multiplier = @transaction.transaction_type_id == TransactionType::WITHDRAWAL ? -1 : 1
     account = Account.find(@transaction.account_id)
-    account.actual_balance = account.actual_balance - @transaction.amount
-    account.reconciled_balance = account.reconciled_balance - @transaction.amount if @transaction.reconciled
+    account.actual_balance = account.actual_balance + (@transaction.amount * multiplier)
+    account.reconciled_balance = account.reconciled_balance + (@transaction.amount * multiplier) if @transaction.reconciled
     account.save
 
     respond_to do |format|
@@ -90,13 +93,14 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find(params[:id])
     
     # Update account balance
+    multiplier = @transaction.transaction_type_id == TransactionType::WITHDRAWAL ? -1 : 1
     prev_account = Account.find(@transaction.account_id)
     new_account = Account.find(params[:transaction][:account_id].to_i)
-    prev_account.actual_balance = prev_account.actual_balance + @transaction.amount
-    new_account.actual_balance = new_account.actual_balance - params[:transaction][:amount].to_f
+    prev_account.actual_balance = prev_account.actual_balance - (@transaction.amount * multiplier)
+    new_account.actual_balance = new_account.actual_balance + (params[:transaction][:amount].to_f * multiplier)
     if @transaction.reconciled
-      prev_account.reconciled_balance = prev_account.reconciled_balance + @transaction.amount
-      new_account.reconciled_balance = new_account.reconciled_balance - params[:transaction][:amount].to_f
+      prev_account.reconciled_balance = prev_account.reconciled_balance - (@transaction.amount * multiplier)
+      new_account.reconciled_balance = new_account.reconciled_balance + (params[:transaction][:amount].to_f * multiplier)
     end
     prev_account.save
     new_account.save
@@ -125,13 +129,14 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find(@id)
     
     # Update account balance
-    account = Account.find(@transaction.account_id)
-    account.reconciled_balance = account.reconciled_balance - @transaction.amount
-    account.save
+    multiplier = @transaction.transaction_type_id == TransactionType::WITHDRAWAL ? -1 : 1
+    @account = Account.find(@transaction.account_id)
+    @account.reconciled_balance = @account.reconciled_balance + (@transaction.amount * multiplier)
+    @account.save
     
     respond_to do |format|
       if @transaction.update_attributes(:reconciled => true)
-        format.js { render :js => "$('##{@id}').effect('highlight', {'color':'#aaa'}, 3000); $('##{@id} input').attr('data-action', 'unreconcile');" }
+        format.js { render :template => "/transactions/reconcile.rjs" }
       else
         format.js { render :js => "alert('Failed to reconcile transaction.'); $('#checkbox-#{@id}').prop('checked', !$('#checkbox-#{@id}')[0].checked);" }
       end
@@ -143,13 +148,14 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find(@id)
     
     # Update account balance
-    account = Account.find(@transaction.account_id)
-    account.reconciled_balance = account.reconciled_balance + @transaction.amount
-    account.save
+    multiplier = @transaction.transaction_type_id == TransactionType::WITHDRAWAL ? -1 : 1
+    @account = Account.find(@transaction.account_id)
+    @account.reconciled_balance = @account.reconciled_balance - (@transaction.amount * multiplier)
+    @account.save
     
     respond_to do |format|
       if @transaction.update_attributes(:reconciled => false)
-        format.js { render :js => "$('##{@id}').effect('highlight', {'color':'#aaa'}, 3000); $('##{@id} input').attr('data-action', 'reconcile');" }
+        format.js { render :template => "/transactions/unreconcile.rjs" }
       else
         format.js { render :js => "alert('Failed to unreconile transaction.'); $('#checkbox-#{@id}').prop('checked', !$('#checkbox-#{@id}')[0].checked);" }
       end
@@ -162,10 +168,11 @@ class TransactionsController < ApplicationController
     @transaction.destroy
     
     # Update account balance
+    multiplier = @transaction.transaction_type_id == TransactionType::WITHDRAWAL ? -1 : 1
     account = Account.find(@transaction.account_id)
-    account.actual_balance = account.actual_balance + @transaction.amount
+    account.actual_balance = account.actual_balance - (@transaction.amount * multiplier)
     if @transaction.reconciled
-      account.reconciled_balance = account.reconciled_balance + @transaction.amount
+      account.reconciled_balance = account.reconciled_balance - (@transaction.amount * multiplier)
     end
     account.save
 

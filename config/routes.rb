@@ -1,5 +1,7 @@
 Toolbox::Application.routes.draw do
   
+  resources :transaction_types
+
   resources :accounts
 
   resources :categories

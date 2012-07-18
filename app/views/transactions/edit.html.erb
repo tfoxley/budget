@@ -26,6 +26,7 @@
             <% end %>
     		<div class="form">
 				<p><%= f.date_select :date, {}, :class => "select-box" %></p>
+				<p><%= f.select :transaction_type_id, @trans_types.collect {|tt| [ tt.name, tt.id ] }, {}, :class => "select-box wide" %></p>
     		    <p><%= f.text_field :to, :class => "text-field", :placeholder => "To (payee)" %></p>
     			<p><%= f.text_field :amount, :class => "text-field", :type => "number", :placeholder => :Amount %></p>
 				<p><%= f.select :account_id, @accounts.collect {|c| [ c.name, c.id ] }, {:selected => @transaction.account_id}, :class => "select-box wide" %></p>

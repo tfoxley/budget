@@ -1,0 +1,3 @@
+$('#<%= @id %>').effect('highlight', {'color':'#aaa'}, 3000);
+$('#<%= @id %> input').attr('data-action', 'reconcile');
+$($('.balances .data')[1]).text('<%= number_to_currency(@account.reconciled_balance) %>');

@@ -651,6 +651,11 @@ ul.trans-list li.transaction a {
     color: #000;
 }
 
+ul.trans-list li.transaction.deposit,
+ul.trans-list li.transaction.deposit a {
+	color: #477543;
+}
+
 a.prev img, a.next img {
     margin-bottom: -2px;
 }

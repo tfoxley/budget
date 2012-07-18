@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120708041804) do
+ActiveRecord::Schema.define(:version => 20120717040909) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -67,6 +67,12 @@ ActiveRecord::Schema.define(:version => 20120708041804) do
     t.datetime "updated_at"
   end
 
+  create_table "transaction_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "transactions", :force => true do |t|
     t.integer  "category_id"
     t.date     "date"
@@ -74,8 +80,9 @@ ActiveRecord::Schema.define(:version => 20120708041804) do
     t.string   "to"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "reconciled",  :default => false
+    t.boolean  "reconciled",          :default => false
     t.integer  "account_id"
+    t.integer  "transaction_type_id"
   end
 
 end
