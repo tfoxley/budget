@@ -26,8 +26,8 @@
             <% end %>
 			<div class="form">
     			<p><%= f.text_field :name, :class => "text-field", :placeholder => :Name %></p>
-    			<p><%= f.text_field :actual_balance, :class => "text-field", :type => "number", :placeholder => "Actual Balance" %></p>
-				<p><%= f.text_field :reconciled_balance, :class => "text-field", :type => "number", :placeholder => "Reconciled Balance" %></p>
+    			<p><%= f.text_field :actual_balance, :class => "text-field", :type => "number", :step => "any", :placeholder => "Actual Balance" %></p>
+				<p><%= f.text_field :reconciled_balance, :class => "text-field", :type => "number", :step => "any", :placeholder => "Reconciled Balance" %></p>
     			<p><%= f.check_box :default, :class => "checkbox" %> Default Account</p>
     			<p class="buttons">
     				<%= f.submit 'Create', :class => "button" %> <input type="button" class="button" onclick="window.location='/accounts';" value="Cancel">

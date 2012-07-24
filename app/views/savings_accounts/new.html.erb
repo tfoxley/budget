@@ -27,7 +27,7 @@
 
         	<div class="form">
         		<p><%= f.text_field :name, :class => "text-field", :placeholder => :Name %></p>
-        		<p><%= f.text_field :amount, :class => "text-field", :placeholder => :Amount %></p>
+        		<p><%= f.text_field :amount, :class => "text-field", :type => "number", :step= => "any", :placeholder => :Amount %></p>
         		<p class="buttons">
         			<%= f.submit 'Create', :class => "button" %> <input type="button" class="button" onclick="window.location='/savings_accounts';" value="Cancel">
         		</p>

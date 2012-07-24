@@ -8,6 +8,6 @@
         <%= radio_button_tag :add_or_subtract, 'subtract', false %>
         <%= label_tag "add_or_subtract_subtract", "", :class => "sprite minus-icon" %>
     </div>
-    <%= text_field_tag :adjustment, "", :placeholder => "Amount" %>
+    <%= text_field_tag :adjustment, "", :type => "number", :step => "any", :placeholder => "Amount" %>
     <%= f.submit "Update", :class => "button" %>
 <% end %>

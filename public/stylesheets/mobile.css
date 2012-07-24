@@ -279,7 +279,7 @@ li form.add_subtract_form input[type=radio] {
     float: left;
 }
 
-li form.add_subtract_form input[type=text] {
+li form.add_subtract_form input[type=number] {
     padding: 5px 1%;
     height: 24px;
 	font-size: 20px;
