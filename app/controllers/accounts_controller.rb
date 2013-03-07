@@ -7,7 +7,6 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.mobile
     end
   end
 
@@ -17,7 +16,6 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.mobile
     end
   end
 
@@ -33,10 +31,8 @@ class AccountsController < ApplicationController
     respond_to do |format|
       if @account.save
         format.html { redirect_to(accounts_url, :notice => 'Account was successfully created.') }
-        format.mobile { redirect_to(accounts_url, :notice => 'Account was successfully created.') }
       else
         format.html { render :action => "new" }
-        format.mobile { render :action => "new" }
       end
     end
   end
@@ -48,10 +44,8 @@ class AccountsController < ApplicationController
     respond_to do |format|
       if @account.update_attributes(params[:account])
         format.html { redirect_to(accounts_url, :notice => 'Account was successfully updated.') }
-        format.mobile { redirect_to(accounts_url, :notice => 'Account was successfully updated.') }
       else
         format.html { render :action => "edit" }
-        format.mobile { render :action => "edit" }
       end
     end
   end
@@ -63,7 +57,6 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(accounts_url) }
-      format.mobile { redirect_to(accounts_url) }
     end
   end
 end

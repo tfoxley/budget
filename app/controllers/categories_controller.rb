@@ -27,12 +27,9 @@ class CategoriesController < ApplicationController
     @next_link = "/categories/" + next_m.strftime("%Y") + "/" + next_m.strftime("%m")
     @prev_link = "/categories/" + prev_m.strftime("%Y") + "/" + prev_m.strftime("%m")
     @new_link = "/categories/new/" +  @cur_date.strftime("%Y")  + "/" + @cur_date.strftime("%m")
-    
-    @selected_account = Account.find(:first, :conditions => {:default => true})
 
     respond_to do |format|
       format.html # index.html.erb
-      format.mobile
     end
   end
   
@@ -62,12 +59,9 @@ class CategoriesController < ApplicationController
     unless selected.nil?
       @edit_link = "/categories/" + selected.id.to_s + "/edit/" +  @cur_date.strftime("%Y")  + "/" + @cur_date.strftime("%m")
     end
-    
-    @selected_account = Account.find(:first, :conditions => {:default => true})
 
     respond_to do |format|
       format.html # index.html.erb
-      format.mobile
     end
   end
 
@@ -77,7 +71,6 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.mobile
     end
   end
 
@@ -90,7 +83,6 @@ class CategoriesController < ApplicationController
     
     respond_to do |format|
       format.html # edit.html.erb
-      format.mobile
     end
   end
 
@@ -101,10 +93,8 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       if @category.save
         format.html { redirect_to(categories_url + "/" + params[:year] + "/" + params[:month], :notice => 'Category was successfully created.') }
-        format.mobile { redirect_to(categories_url + "/" + params[:year] + "/" + params[:month], :notice => 'Category was successfully created.') }
       else
         format.html { render :action => "new" }
-        format.mobile { render :action => "new" }
       end
     end
   end
@@ -116,10 +106,8 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       if @category.update_attributes(params[:category])
         format.html { redirect_to(categories_url + "/" + params[:year] + "/" + params[:month], :notice => 'Category was successfully updated.') }
-        format.mobile { redirect_to(categories_url + "/" + params[:year] + "/" + params[:month], :notice => 'Category was successfully updated.') }
       else
         format.html { render :action => "edit" }
-        format.mobile { render :action => "edit" }
       end
     end
   end
@@ -131,7 +119,6 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(categories_url) }
-      format.mobile { redirect_to(categories_url) }
     end
   end
 end

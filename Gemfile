@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
-gem 'mobylette'
+gem 'rails', '3.0.19'
+#gem 'mobylette', '2.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -9,7 +9,6 @@ class AuthController < ApplicationController
     else
       respond_to do |format|
         format.html # login.html.erb
-        format.mobile
       end
     end
   end

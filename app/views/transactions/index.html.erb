@@ -39,32 +39,15 @@
     			<%= @current %>
     			<a class="next sprite forward-icon" href="<%= @next_link %>"></a>
     		</li>
-			<li class="account-picker">
-				<script type="text/javascript">
-    				function change(select) {
-    					var selected = select[select.selectedIndex].value;
-    					var path = '/transactions/' + selected + '/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>';
-    					window.location = path;
-    				}
-    			</script>
-				<%= select :transaction, :account_id, @accounts.collect {|c| [ c.name, c.id ] }, {:selected => @selected_account.id}, {:class => "select-box", :onchange => "change(this);"} %>
-			</li>
-    		<li class="balances">
-    			<span class="info">Actual Balance</span>
-    			<span class="data"><%= number_to_currency(@selected_account.actual_balance) %></span>
-				<br/>
-				<span class="info">Reconciled Balance</span>
-    			<span class="data"><%= number_to_currency(@selected_account.reconciled_balance) %></span>
-    		</li>
     		<% @transactions.each do |transaction| %>
-    			<li class="transaction <%= transaction.transaction_type_id == TransactionType::DEPOSIT ? 'deposit' : '' %>" id="<%= transaction.id %>">
+    			<li class="transaction" id="<%= transaction.id %>">
     				<input type="checkbox" class="reconcile" id="checkbox-<%= transaction.id %>" data-id="<%= transaction.id %>" data-action="<%= transaction.reconciled ? 'unreconcile' : 'reconcile' %>" name="reconciled" <%= transaction.reconciled ? "checked" : "" %>>
     				<a name="<%= transaction.id %>"> </a>
     				<a href="/transactions/<%= transaction.id %>/edit/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>">
     					<span class="info">
     						<span class="to"><%=h transaction.to %></span>
     						<br/>
-    						<%=h transaction.account.name %> : <%=h transaction.category.name %>
+    						<%=h transaction.category.name %>
     					</span>
     				</a>
     				<span class="data"><%= number_to_currency(transaction.amount) %></span>

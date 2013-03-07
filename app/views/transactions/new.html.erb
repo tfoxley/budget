@@ -9,7 +9,7 @@
     <body>
     	<div id="header">
     		<h1>New Transaction</h1>
-    		<span class="left"><a href="/transactions/<%= @selected_account.id %>/<%= params[:year] %>/<%= params[:month] %>" class="sprite back-icon"></a></span>
+    		<span class="left"><a href="/transactions/<%= params[:year] %>/<%= params[:month] %>" class="sprite back-icon"></a></span>
     		<span class="left-2"><a href="/" class="sprite home-icon"></a></span>
     	</div>
 	
@@ -26,14 +26,12 @@
             <% end %>
     		<div class="form">
     		    <p><%= f.date_select :date, {}, :class => "select-box" %></p>
-				<p><%= f.select :transaction_type_id, @trans_types.collect {|tt| [ tt.name, tt.id ] }, {:selected => TransactionType::WITHDRAWAL}, :class => "select-box wide" %></p>
     		    <p><%= f.text_field :to, :class => "text-field", :placeholder => "To (payee) / From" %></p>
     			<p><%= f.text_field :amount, :class => "text-field", :type => "number", :step => "any", :placeholder => :Amount %></p>
-				<p><%= f.select :account_id, @accounts.collect {|c| [ c.name, c.id ] }, {:selected => @selected_account.id}, :class => "select-box wide" %></p>
     			<p><%= f.select :category_id, @categories.collect {|c| [ c.name, c.id ] }, {}, :class => "select-box wide" %></p>
 				<p class="buttons"><%= f.check_box :reconciled  %> <label for="persist">Reconciled</label></p>
     			<p class="buttons">
-    				<%= f.submit 'Create', :class => "button" %> <input type="button" class="button" onclick="window.location='/transactions/<%= @selected_account.id %>/<%= params[:year] %>/<%= params[:month] %>';" value="Cancel">
+    				<%= f.submit 'Create', :class => "button" %> <input type="button" class="button" onclick="window.location='/transactions/<%= params[:year] %>/<%= params[:month] %>';" value="Cancel">
     			</p>
     		</div>
     	<% end %>

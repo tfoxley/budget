@@ -3,40 +3,20 @@
     <head>
     	<title>Toolbox</title>
     	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    	<%= stylesheet_link_tag 'full' %>
-		<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    	<meta name="viewport" content="width=device-width, user-scalable=no" />
+		<link rel="apple-touch-icon" href="/images/toolbox.png" />
+    	<%= stylesheet_link_tag 'mobile' %>
     </head>
     <body id="home">
     	<div id="header">
-    		<h1 class="left">Toolbox</h1>
-			<ul class="right">
-				<li><a href="/logout">Logout</a></li>
-				<li>Travis Foxley</li>
-			</ul>
+    		<h1>Toolbox</h1>
     	</div>
-		<div id="content">
-    		<ul>
-	    		<li><a href="/inventories">
-					<div class="sprite cart-icon pad-right"><img src="/images/cart-large.png"/></div>
-					Inventory
-				</a></li>
-	    		<li><a href="/lists">
-					<div class="sprite list-icon pad-right"><img src="/images/checkmark-large.png"/></div>
-					Lists
-				</a></li>
-	    		<li><a href="/transactions">
-					<div class="sprite dollar-sign pad-right"><img src="/images/dollar-sign-large.png"/></div>
-					Finances
-				</a></li>
-	    		<li><a href="/savings_accounts">
-					<div class="sprite savings-icon pad-right"><img src="/images/piggy-bank-large.png"/></div>
-					Savings
-				</a></li>
-				<li><a href="/users">
-					<div class="sprite user-icon pad-right"><img src="/images/silouette-large.png"/></div>
-					Users
-				</a></li>
-	    	</ul>
-		</div>
+    	<ul>
+    		<li class="application"><a href="/inventories"><div class="blue-icon icon"><div class="sprite cart-icon"></div></div>Inventory</a></li>
+    		<li class="application"><a href="/lists"><div class="red-icon icon"><div class="sprite checkmark-icon"></div></div>Lists</a></li>
+    		<li class="application"><a href="/transactions"><div class="green-icon icon"><div class="sprite dollarsign-icon"></div></div>Finances</a></li>
+    		<li class="application"><a href="/savings_accounts"><div class="purple-icon icon"><div class="sprite piggybank-icon"></div></div>Savings</a></li>
+			<li class="application"><a href="/users"><div class="orange-icon icon"><div class="sprite silhouette-icon"></div></div>Users</a></li>
+    	</ul>
     </body>
 </html>

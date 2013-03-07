@@ -7,7 +7,6 @@ class InventoryItemsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.mobile
     end
   end
 
@@ -16,7 +15,6 @@ class InventoryItemsController < ApplicationController
     @inventory_item = InventoryItem.find(params[:id])
     respond_to do |format|
       format.html
-      format.mobile
     end
   end
 
@@ -27,10 +25,8 @@ class InventoryItemsController < ApplicationController
     respond_to do |format|
       if @inventory_item.save
         format.html { redirect_to('/inventories/' + @inventory_item.inventory_id.to_s, :notice => 'Inventory item was successfully created.') }
-        format.mobile { redirect_to('/inventories/' + @inventory_item.inventory_id.to_s, :notice => 'Inventory item was successfully created.') }
       else
         format.html { render :action => "new" }
-        format.mobile { render :action => "new" }
       end
     end
   end
@@ -42,10 +38,8 @@ class InventoryItemsController < ApplicationController
     respond_to do |format|
       if @inventory_item.update_attributes(params[:inventory_item])
         format.html { redirect_to('/inventories/' + @inventory_item.inventory_id.to_s, :notice => 'Inventory item was successfully updated.') }
-        format.mobile { redirect_to('/inventories/' + @inventory_item.inventory_id.to_s, :notice => 'Inventory item was successfully updated.') }
       else
         format.html { render :action => "edit" }
-        format.mobile { render :action => "edit" }
       end
     end
   end
@@ -96,7 +90,6 @@ class InventoryItemsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to '/inventories/' + @inventory.to_s }
-      format.mobile { redirect_to '/inventories/' + @inventory.to_s }
     end
   end
 end
