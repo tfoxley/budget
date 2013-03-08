@@ -7,4 +7,8 @@ $(function() {
 			});
 		}
 	});
+	
+	$("#progressbar").progressbar({
+	    value: 50
+	  });
 });

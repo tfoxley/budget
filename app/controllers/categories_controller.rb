@@ -17,10 +17,13 @@ class CategoriesController < ApplicationController
     categories.each do |x|
       trans_total = 0.0
       transactions.each { |a| trans_total += a.amount if a.category_id == x.id }
-      budget_amount = x.budget_amount.blank? ? "-------" : x.budget_amount
-      @budgets << [x.id, x.name, budget_amount, trans_total]
+      budget_amount = x.budget_amount.blank? ? 0.0 : x.budget_amount
+      percent =  budget_amount > 0.0 ? trans_total / budget_amount : 0.0
+      percent = percent * 100
+
+      @budgets << [x.id, x.name, budget_amount, trans_total, percent.to_i]
     end
-    puts @budgets
+
     # build links for the next and previous months
     next_m = (@cur_date >> 1)
     prev_m = (@cur_date << 1)

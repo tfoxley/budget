@@ -10,6 +10,7 @@ body.list {
 
 body.list ul {
 	background: url(/images/full-background.jpg);
+	padding-top: 20px;
 }
 
 body.list ul li {
@@ -500,6 +501,10 @@ li.budget {
     font-weight: normal;
 }
 
+li.budget.total {
+	font-weight: bold;
+}
+
 li p {
 	float: left;
 	padding: 6px 2%;
@@ -507,12 +512,8 @@ li p {
 	font-size: 12px;
 }
 
-li p.right {
-	text-align: right;
-}
-
 li p.category {
-	width: 27%;
+	width: 24%;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -523,18 +524,15 @@ li a p.category {
 	text-decoration: none;
 }
 
-li p.budget,
-li p.spent,
-li p.remaining {
-	width: 19%;
+li p.budget {
+	width: 24%;
+	text-align: right;
 }
 
-li p.negative {
-    color: red;
-}
-
-li p.positive {
-    color: green;
+li p.spent {
+	width: 100%;
+	text-align: center;
+	margin-top: -28px;
 }
 /* Budget styles */
 
@@ -668,5 +666,25 @@ a.next {
 li.account-picker {
 	text-align: center;
 }
+
+div.progressbar {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	height: 22px;
+	width: 39%;
+	margin: 6px 2%;
+	float: left;
+}
+
+div.progressbar-value {
+	background-color: green;
+	height: 22px;
+	border-radius: 2px;
+}
+
+div.progressbar-value.over {
+	background-color: red;
+}
+
 
 /* Finance styles */

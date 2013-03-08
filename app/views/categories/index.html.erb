@@ -28,20 +28,11 @@
     			<%= @current %>
     			<a class="next sprite forward-icon" href="<%= @next_link %>"></a>
     		</li>
-    		<li class="header">
-    		    <p class="category">Category</p>
-    		    <p class="budget">Budget</p>
-				<p class="spent">Spent</p>
-				<p class="remaining">Remaining</p>
-    		</li>
     		<% budget_total = 0.0 %>
     		<% spent_total = 0.0 %>
-    		<% remaining_total = 0.0 %>
     		<% @budgets.each do |value| %>
-    		    <% remaining = numeric?(value[2]) ? value[2] - value[3] : 0.0 %>
     		    <% budget_total += numeric?(value[2]) ? value[2] : 0.0 %>
         		<% spent_total += value[3] %>
-        		<% remaining_total += remaining %>
     			<li class="budget">
     			    <% if value[4] != 0 %>
     				    <a href="/categories/<%= value[0] %>/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>">
@@ -50,20 +41,25 @@
     				<% if value[4] != 0 %>
     				    </a>
     				<% end %>
-    				<p class="budget right"><%= numeric?(value[2]) ? number_to_currency(value[2]) : value[2] %></p>
-    				<p class="spent right"><%= number_to_currency(value[3]) %></p>
-    				<p class="remaining right <%= remaining > 0.0 ? 'positive' : 'negative' %>">
-    				    <%= numeric?(value[2]) ? number_to_currency(remaining) : value[2] %>
-    				</p>
-    			</li>
+        		    <div class="progressbar">
+        		      <div class="progressbar-value <%= "over" if value[4] > 100 %>" style="width: <%= [value[4], 100].min %>%;"></div>
+        		      <p class="spent"><%= number_to_currency(value[3]) %></p>
+        		    </div>
+        		    <p class="budget"><%= number_to_currency(value[2]) %></p>
+        		</li>
     		<% end %>
-    		<li class="header">
-    		    <p class="category">Total</p>
-    		    <p class="budget right"><%= number_to_currency(budget_total) %></p>
-				<p class="spent right"><%= number_to_currency(spent_total) %></p>
-				<p class="remaining right <%= remaining_total > 0.0 ? 'positive' : 'negative' %>">
-				    <%= number_to_currency(remaining_total) %>
-				</p>
+    		<li class="budget total">
+    		    <%
+    		        percent =  budget_total > 0.0 ? spent_total / budget_total : 0.0
+                    percent = percent * 100
+                    percent = percent.to_i
+    		    %>
+                <p class="category">Total</p>
+                <div class="progressbar">
+    		      <div class="progressbar-value <%= "over" if percent > 100 %>" style="width: <%= [percent, 100].min %>%;"></div>
+    		      <p class="spent"><%= number_to_currency(spent_total) %></p>
+    		    </div>
+    		    <p class="budget"><%= number_to_currency(budget_total) %></p>
     		</li>
     	</ul>
     </body>
