@@ -3,19 +3,28 @@ class TransactionsController < ApplicationController
   
   # GET /transactions
   def index
+    @categories = Category.find(:all, :order => "name")
+    selected = Category.find(params[:id].to_i) unless params[:id].blank?
+    
     @cur_date = Date.current
     unless params[:month].blank?
       @cur_date = Date.new(params[:year].to_i, params[:month].to_i, 1)
     end
     @current = @cur_date.strftime("%B %Y")
-    
-    @transactions = Transaction.find(:all, :conditions => { :date => @cur_date.beginning_of_month..@cur_date.end_of_month }, :order => "date desc,id desc")
+    puts selected
+    puts "======================"
+    if !selected.blank?
+      @transactions = Transaction.find(:all, :conditions => { :date => @cur_date.beginning_of_month..@cur_date.end_of_month, :category_id => selected.id }, :order => "date desc,id desc")
+    else
+      @transactions = Transaction.find(:all, :conditions => { :date => @cur_date.beginning_of_month..@cur_date.end_of_month }, :order => "date desc,id desc")
+    end
     
     # build links for the next and previous months
     next_m = (@cur_date >> 1)
     prev_m = (@cur_date << 1)
-    @next_link = "/transactions/" + "/" + next_m.strftime("%Y") + "/" + next_m.strftime("%m")
-    @prev_link = "/transactions/" + "/" + prev_m.strftime("%Y") + "/" + prev_m.strftime("%m")
+    selected_part = selected.blank? ? "" : selected.id.to_s + "/"
+    @next_link = "/transactions/" + selected_part + next_m.strftime("%Y") + "/" + next_m.strftime("%m")
+    @prev_link = "/transactions/" + selected_part + prev_m.strftime("%Y") + "/" + prev_m.strftime("%m")
     @new_link = "/transactions/new/" + "/" +  @cur_date.strftime("%Y")  + "/" + @cur_date.strftime("%m")
 
     respond_to do |format|
