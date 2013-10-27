@@ -29,7 +29,6 @@ class CategoriesController < ApplicationController
     prev_m = (@cur_date << 1)
     @next_link = "/categories/" + next_m.strftime("%Y") + "/" + next_m.strftime("%m")
     @prev_link = "/categories/" + prev_m.strftime("%Y") + "/" + prev_m.strftime("%m")
-    @new_link = "/categories/new/" +  @cur_date.strftime("%Y")  + "/" + @cur_date.strftime("%m")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -37,9 +36,8 @@ class CategoriesController < ApplicationController
   end
   
   # GET /categories/:id
-  def show
+  def manage
     @categories = Category.find(:all, :order => "name")
-    selected = params[:id].blank? ? @categories[0] : Category.find(params[:id].to_i)
     
     @cur_date = Date.current
     unless params[:month].blank?
@@ -47,29 +45,20 @@ class CategoriesController < ApplicationController
     end
     @current = @cur_date.strftime("%B %Y")
     
-    @transactions = []
-    unless selected.nil?
-      @transactions = Transaction.find(:all, :conditions => { :date => @cur_date.beginning_of_month..@cur_date.end_of_month, :category_id => selected.id }, :order => "date desc,id desc")
-    end
-
-    # build links for the next and previous months
-    next_m = (@cur_date >> 1)
-    prev_m = (@cur_date << 1)
-    @next_link = "/categories/" + selected.id.to_s + "/" + next_m.strftime("%Y") + "/" + next_m.strftime("%m")
-    @prev_link = "/categories/" + selected.id.to_s + "/" + prev_m.strftime("%Y") + "/" + prev_m.strftime("%m")
     @new_link = "/categories/new/" +  @cur_date.strftime("%Y")  + "/" + @cur_date.strftime("%m")
-    @edit_link = "#"
-    unless selected.nil?
-      @edit_link = "/categories/" + selected.id.to_s + "/edit/" +  @cur_date.strftime("%Y")  + "/" + @cur_date.strftime("%m")
-    end
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # manage.html.erb
     end
   end
 
   # GET /categories/new
   def new
+    @cur_date = Date.current
+    unless params[:month].blank?
+      @cur_date = Date.new(params[:year].to_i, params[:month].to_i, 1)
+    end
+    
     @category = Category.new
 
     respond_to do |format|
@@ -79,6 +68,11 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit
+    @cur_date = Date.current
+    unless params[:month].blank?
+      @cur_date = Date.new(params[:year].to_i, params[:month].to_i, 1)
+    end
+    
     @category = Category.find(params[:id])
     unless @category.budget_amount.blank?
       @category.budget_amount = sprintf( "%0.02f", @category.budget_amount)
@@ -95,7 +89,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to(categories_url + "/" + params[:year] + "/" + params[:month], :notice => 'Category was successfully created.') }
+        format.html { redirect_to(categories_url + "/manage/" + params[:year] + "/" + params[:month], :notice => 'Category was successfully created.') }
       else
         format.html { render :action => "new" }
       end
@@ -108,7 +102,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.update_attributes(params[:category])
-        format.html { redirect_to(categories_url + "/" + params[:year] + "/" + params[:month], :notice => 'Category was successfully updated.') }
+        format.html { redirect_to(categories_url + "/manage/" + params[:year] + "/" + params[:month], :notice => 'Category was successfully updated.') }
       else
         format.html { render :action => "edit" }
       end
@@ -121,7 +115,7 @@ class CategoriesController < ApplicationController
     @category.destroy
 
     respond_to do |format|
-      format.html { redirect_to(categories_url) }
+      format.html { redirect_to(categories_url + "/manage/") }
     end
   end
 end

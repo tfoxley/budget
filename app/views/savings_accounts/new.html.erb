@@ -5,13 +5,22 @@
     	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
     	<meta name="viewport" content="width=device-width, user-scalable=no" />
 		<%= stylesheet_link_tag 'mobile' %>
+		<%= javascript_include_tag "jquery-1.7.1.min", "jquery-rails", "main" %>
     </head>
     <body>
     	<div id="header">
-    		<h1>New List</h1>
-    		<span class="left"><a href="/savings_accounts" class="sprite back-icon"></a></span>
-    		<span class="left-2"><a href="/" class="sprite home-icon"></a></span>
+    		<h1>New Savings Account</h1>
+    		<span class="left"><a href="#" class="sprite menu-icon" id="menu"></a></span>
     	</div>
+    	
+    	<div id="nav">
+    	    <ul>
+    	        <li><a href="/categories"><div class="sprite budget-icon pad-right"></div>Budget</a></li>
+        		<li><a href="/transactions"><div class="sprite transactions-icon pad-right"></div>Transactions</a></li>
+        		<li><a href="/savings_accounts"><div class="sprite piggybank-icon pad-right"></div>Savings</a></li>
+        		<li><a href="/categories/manage"><div class="sprite categories-icon pad-right"></div>Manage Categories</a></li>
+        	</ul>
+        </div>
 
         <% form_for(@savings_account) do |f| %>
             <% if @savings_account.errors.any? %>

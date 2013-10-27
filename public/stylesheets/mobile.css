@@ -46,19 +46,17 @@ img {
 }
 
 #header {
-	background-image: linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
-    background-image: -o-linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
-    background-image: -moz-linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
-    background-image: -webkit-linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
-    background-image: -ms-linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.2, #212121), color-stop(0.44, #050505), color-stop(0.52, #2B2B2B));
-	color: #ffffff;
+	/**background-color: #eee;**/
+	background-color: #3d94f6;
+	border-bottom: 1px solid #bbb;
+	color: #fff;
 	text-align: center;
 	margin: 0;
 	width: 100%;
 	position: fixed;
 	top: 0;
 	z-index: 1;
+	box-shadow: 0px 1px 5px #ddd;
 }
 
 #header h1 {
@@ -82,26 +80,26 @@ img {
 
 #header span.left {
 	position: absolute;
-	top: 15px;
-	left: 10px;
+	top: 10px;
+	left: 15px;
 }
 
 #header span.left-2 {
 	position: absolute;
-	top: 15px;
-	left: 45px;
+	top: 10px;
+	left: 55px;
 }
 
 #header span.right {
 	position: absolute;
-	top: 15px;
-	right: 10px;
+	top: 10px;
+	right: 15px;
 }
 
 #header span.right-2 {
 	position: absolute;
-	top: 15px;
-	right: 45px;
+	top: 10px;
+	right: 55px;
 }
 
 ul {
@@ -119,8 +117,21 @@ li {
 	list-style-type: none;	
 	border-bottom: 1px solid rgb(217,217,217);
 	padding: 10px 10px 10px 10px;
-	min-height:24px;
-	line-height:24px;
+	min-height:30px;
+	line-height:30px;
+}
+
+li.budget {
+	min-height: 24px;
+	line-height: 24px;
+}
+
+li.category a {
+	display: inline;
+}
+
+li.category .delete-icon {
+	float: right;
 }
 
 li a img {
@@ -206,11 +217,11 @@ div.form p .textarea {
 
 div.form p .text-field,
 div.form div .text-field {
-	margin: 0 3%;
+	margin: 0 5px;
 	padding: 5px;
 	width: 90%;
 	height: 24px;
-	font-size: 20px;
+	font-size: 18px;
 	-moz-border-radius:6px;
 	-webkit-border-radius:6px;
 	border-radius:6px;
@@ -218,8 +229,8 @@ div.form div .text-field {
 }
 
 div.form p .select-box {
-    margin: 0 3%;
-    font-size: 20px;
+    margin: 0 5px;
+    font-size: 18px;
     -moz-border-radius:6px;
 	-webkit-border-radius:6px;
     border-radius: 6px;
@@ -228,7 +239,7 @@ div.form p .select-box {
 }
 
 div.form p .select-box.wide {
-    width: 90%;
+    width: 94%;
 }
 
 div.form p.buttons {
@@ -268,7 +279,7 @@ li form.add_subtract_form .radio_group {
 }
 
 li form.add_subtract_form label {
-    padding: 0 20px 10px 0;
+    padding: 0 10px 5px 0;
 }
 
 li form.add_subtract_form label img {
@@ -276,7 +287,7 @@ li form.add_subtract_form label img {
 }
 
 li form.add_subtract_form input[type=radio] {
-    margin: 4px 20px 10px 1px;
+    margin: 8px 5px 10px 1px;
     float: left;
 }
 
@@ -285,7 +296,7 @@ li form.add_subtract_form input[type=number] {
     height: 24px;
 	font-size: 20px;
     width: 80px;
-    margin: 7px 20px 0 10px;
+    margin: 14px 20px 0 10px;
 }
 
 span.edit-mode {
@@ -335,34 +346,32 @@ div#error_explanation li {
 
 /* Button styles */
 .button {
-	-moz-box-shadow:inset 0px 1px 0px 0px #a4e271;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #a4e271;
-	box-shadow:inset 0px 1px 0px 0px #a4e271;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #89c403), color-stop(1, #77a809) );
-	background:-moz-linear-gradient( center top, #89c403 5%, #77a809 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#89c403', endColorstr='#77a809');
-	background-color:#89c403;
-	-moz-border-radius:6px;
+	-moz-box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0) );
+	background:-moz-linear-gradient( center top, #3d94f6 5%, #1e62d0 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0');
+	background-color:#3d94f6;
 	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
 	border-radius:6px;
-	border:1px solid #74b807;
+	text-indent:0;
+	border:1px solid #337fed;
 	display:inline-block;
-	color:#000;
+	color:#ffffff;
 	font-family:Verdana;
 	font-size:15px;
 	font-weight:normal;
 	padding:6px 24px;
 	text-decoration:none;
 }
-
 .button:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #77a809), color-stop(1, #89c403) );
-	background:-moz-linear-gradient( center top, #77a809 5%, #89c403 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77a809', endColorstr='#89c403');
-	background-color:#77a809;
-}
-
-.button:active {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6) );
+	background:-moz-linear-gradient( center top, #1e62d0 5%, #3d94f6 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6');
+	background-color:#1e62d0;
+}.button:active {
 	position:relative;
 	top:1px;
 }
@@ -404,72 +413,27 @@ div#error_explanation li {
 
 
 /* Sprites styles */
-.sprite { display: block; background: url('/images/mobile-icons-sprite.png') no-repeat; float: left; }
+.sprite { display: block; background: url('/images/mobile-icons.png') no-repeat; float: left; }
 .accounts-icon{ background-position: 0 10px; width: 16px; height: 16px; } 
-.add-sub-icon{ background-position: 0 -36px; width: 20px; height: 20px; } 
-.back-icon{ background-position: 0 -76px; width: 20px; height: 20px; } 
-.budget-icon{ background-position: 0 -106px; width: 16px; height: 16px; } 
+.add-sub-icon{ background-position: -588px -159px; width: 30px; height: 30px; } 
+.back-icon{ background-position: -730px -582px; width: 30px; height: 30px; } 
+.budget-icon{ background-position: -299px -250px; width: 16px; height: 16px; } 
 .cart-icon{ background-position: 0 -152px; width: 30px; height: 30px; } 
-.categories-icon{ background-position: 0 -192px; width: 16px; height: 16px; } 
+.categories-icon{ background-position: -677px -437px; width: 16px; height: 16px; } 
 .checkmark-icon{ background-position: 0 -238px; width: 30px; height: 30px; } 
-.delete-icon{ background-position: 0 -288px; width: 20px; height: 20px; } 
+.delete-icon{ background-position: -773px -206px; width: 30px; height: 30px; } 
 .dollarsign-icon{ background-position: 0 -328px; width: 30px; height: 30px; } 
-.edit-icon{ background-position: 0 -378px; width: 20px; height: 20px; } 
-.forward-icon{ background-position: 0 -418px; width: 20px; height: 20px; } 
-.home-icon{ background-position: 0 -458px; width: 20px; height: 20px; } 
-.minus-icon{ background-position: 0 -498px; width: 20px; height: 20px; } 
-.new-icon{ background-position: 0 -538px; width: 20px; height: 20px; } 
-.piggybank-icon{ background-position: 0 -578px; width: 30px; height: 30px; } 
-.plus-icon{ background-position: 0 -628px; width: 20px; height: 20px; } 
+.edit-icon{ background-position: -681px -488px; width: 30px; height: 30px; } 
+.forward-icon{ background-position: -772px -582px; width: 30px; height: 30px; } 
+.menu-icon{ background-position: -585px -818px; width: 30px; height: 30px; } 
+.menu-new-icon{ background-position: -633px -817px; width: 30px; height: 30px; } 
+.minus-icon{ background-position: -399px -158px; width: 30px; height: 30px; } 
+.new-icon{ background-position: -352px -159px; width: 30px; height: 30px; } 
+.piggybank-icon{ background-position: -347px -626px; width: 30px; height: 30px; } 
+.plus-icon{ background-position: -306px -159px; width: 30px; height: 30px; } 
 .silhouette-icon{ background-position: 0 -668px; width: 30px; height: 30px; } 
-.transactions-icon{ background-position: 0 -708px; width: 16px; height: 16px; } 
+.transactions-icon{ background-position: -298px -625px; width: 16px; height: 16px; } 
 /* Sprites styles */
-
-/* Homepage styles */
-body#home ul li a {
-	line-height: 30px;
-}
-body#home ul li div.icon {
-	height: 30px;
-	width: 30px;
-	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fff), color-stop(1, #aaa) );
-	background: -moz-linear-gradient( center top, ##fff 5%, #aaa 100% );
-	border-radius: 6px;
-	box-shadow: inset 0px 2px 0px 0px #DDD;
-	margin-right: 10px;
-	float: left;
-}
-
-body#home ul li div.blue-icon {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #bddbfa), color-stop(1, #80b5ea) );
-	background:-moz-linear-gradient( center top, #bddbfa 5%, #80b5ea 100% );
-	box-shadow: inset 0px 2px 0px 0px #dcecfb;
-}
-
-body#home ul li div.green-icon {
-	box-shadow:inset 0px 1px 0px 0px #a4e271;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #89c403), color-stop(1, #77a809) );
-	background:-moz-linear-gradient( center top, #89c403 5%, #77a809 100% );
-}
-
-body#home ul li div.red-icon {
-	box-shadow:inset 0px 1px 0px 0px #f7c5c0;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fc8d83), color-stop(1, #e4685d) );
-	background:-moz-linear-gradient( center top, #fc8d83 5%, #e4685d 100% );
-}
-
-body#home ul li div.purple-icon {
-	box-shadow:inset 0px 1px 0px 0px #efdcfb;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfbdfa), color-stop(1, #bc80ea) );
-	background:-moz-linear-gradient( center top, #dfbdfa 5%, #bc80ea 100% );
-}
-
-body#home ul li div.orange-icon {
-	box-shadow:inset 0px 1px 0px 0px #fce2c1;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25) );
-	background:-moz-linear-gradient( center top, #ffc477 5%, #fb9e25 100% );
-}
-/* Homepage styles */
 
 /* Budget styles*/
 li.selector {
@@ -539,17 +503,11 @@ li p.spent {
 
 /* Finance styles */
 #nav {
-    background-image: linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
-    background-image: -o-linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
-    background-image: -moz-linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
-    background-image: -webkit-linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
-    background-image: -ms-linear-gradient(bottom, #212121 20%, #050505 44%, #2B2B2B 52%);
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.2, #212121), color-stop(0.44, #050505), color-stop(0.52, #2B2B2B));
-	height: 50px;
+    background-color: #ddd;
 	position: fixed;
-	bottom: 0;
-	width: 100%;
 	z-index: 1;
+	border: 2px solid #999;
+	display: none;
 }
 
 #nav ul {
@@ -558,36 +516,23 @@ li p.spent {
 }
 
 #nav li {
-    text-align: center;
-	float: left;
+    text-align: left;
 	list-style-type: none;
-	width: 29%;
 	height: 36px;
-	border: none;
-	padding: 2px 0 0 0;
-	-moz-border-radius: 7px;
-    border-radius: 7px;
-    margin: 7px 2%;
+	border-bottom: 1px solid #bbb;
+	font-weight: normal;
 }
 
 #nav li div {
-	font-size: 10px;
-	text-align: center;
-	margin: 0 auto;
-	float: none;
+	text-align: left;
+	height: 35px;
 	width: 40px;
-	padding: 11px 0 0 20px;
-	line-height: 15px;
-	height: 25px;
-}
-
-#nav li.active {
-	background-color:#333;
 }
 
 #nav li a {
-	color: #ffffff;
+	color: #000;
 	text-decoration: none;
+	line-height: 40px;
 }
 
 #nav li a img {
@@ -601,7 +546,7 @@ li.selector {
 
 li input.reconcile {
     float: left;
-    margin: 13px 13px 0 0;
+    margin: 15px 13px 0 0;
     width: 20px;
     height: 20px;
 }
@@ -641,7 +586,7 @@ ul.trans-list {
 
 ul.trans-list li.transaction {
     font-size: 12px;
-    min-height: 40px;
+    min-height: 55px;
 }
 
 ul.trans-list li.transaction a {
@@ -665,6 +610,10 @@ a.next {
 
 li.account-picker {
 	text-align: center;
+}
+
+li.transaction {
+	line-height: 25px;
 }
 
 div.progressbar {

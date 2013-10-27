@@ -2,6 +2,7 @@ $("#<%= params[:id] %> form").slideUp(800, function(){
     $(this).remove();
     
     $("#<%= params[:id] %> .amount").html("<%= number_to_currency(@savings_account.amount, :negative_format => "- %u%n") %>");
+	$("#total .amount").html("<%= number_to_currency(@total, :negative_format => "- %u%n") %>");
     <% if @savings_account.amount < 0 %>
         $("#<%= params[:id] %> .amount").addClass("negative");
     <% else %>

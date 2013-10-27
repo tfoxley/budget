@@ -11,8 +11,6 @@ class TransactionsController < ApplicationController
       @cur_date = Date.new(params[:year].to_i, params[:month].to_i, 1)
     end
     @current = @cur_date.strftime("%B %Y")
-    puts selected
-    puts "======================"
     if !selected.blank?
       @transactions = Transaction.find(:all, :conditions => { :date => @cur_date.beginning_of_month..@cur_date.end_of_month, :category_id => selected.id }, :order => "date desc,id desc")
     else
@@ -25,7 +23,6 @@ class TransactionsController < ApplicationController
     selected_part = selected.blank? ? "" : selected.id.to_s + "/"
     @next_link = "/transactions/" + selected_part + next_m.strftime("%Y") + "/" + next_m.strftime("%m")
     @prev_link = "/transactions/" + selected_part + prev_m.strftime("%Y") + "/" + prev_m.strftime("%m")
-    @new_link = "/transactions/new/" + "/" +  @cur_date.strftime("%Y")  + "/" + @cur_date.strftime("%m")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -36,6 +33,11 @@ class TransactionsController < ApplicationController
   def new
     @transaction = Transaction.new
     @categories = Category.find(:all, :order => :name)
+    
+    @cur_date = Date.current
+    unless params[:month].blank?
+      @cur_date = Date.new(params[:year].to_i, params[:month].to_i, 1)
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,6 +49,11 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find(params[:id])
     @transaction.amount = sprintf( "%0.02f", @transaction.amount)
     @categories = Category.find(:all, :order => "name")
+    
+    @cur_date = Date.current
+    unless params[:month].blank?
+      @cur_date = Date.new(params[:year].to_i, params[:month].to_i, 1)
+    end
     
     respond_to do |format|
       format.html # new.html.erb

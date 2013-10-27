@@ -5,7 +5,7 @@
     	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
     	<meta name="viewport" content="width=device-width, user-scalable=no" />
 		<%= stylesheet_link_tag 'mobile' %>
-    	<%= javascript_include_tag "jquery-1.7.1.min", "jquery-rails", "jquery-ui-1.8.17.custom.min" %>
+    	<%= javascript_include_tag "jquery-1.7.1.min", "jquery-rails", "jquery-ui-1.8.17.custom.min", "main" %>
     	<script>
             $(function() {
     	        $("input:checkbox").live("change", function(){
@@ -20,15 +20,16 @@
     <body>
     	<div id="header">
     		<h1>Transactions</h1>
-    		<span class="left"><a href="/" class="sprite home-icon"></a></span>
-    		<span class="right"><a href="<%= @new_link %>" class="sprite new-icon"></a></span>
+    		<span class="left"><a href="#" class="sprite menu-icon" id="menu"></a></span>
+    		<span class="right"><a href="/transactions/new/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>" class="sprite menu-new-icon"></a></span>
     	</div>
     	
     	<div id="nav">
-        	<ul>
-        		<li><a href="/categories/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite budget-icon pad-right">Budget</div></a></li>
-        		<li class="active"><a href="/transactions/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite transactions-icon pad-right">Transxns</div></a></li>
-        		<li><a href="/categories/<%= Category.first.id %>/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite categories-icon pad-right">Categories</div></a></li>
+    	    <ul>
+    	        <li><a href="/categories/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite budget-icon pad-right"></div>Budget</a></li>
+        		<li><a href="/transactions/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite transactions-icon pad-right"></div>Transactions</a></li>
+        		<li><a href="/savings_accounts"><div class="sprite piggybank-icon pad-right"></div>Savings</a></li>
+        		<li><a href="/categories/manage/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite categories-icon pad-right"></div>Manage Categories</a></li>
         	</ul>
         </div>
     	
@@ -42,7 +43,11 @@
     		    <script type="text/javascript">
     				function change(select) {
     					var selected = select[select.selectedIndex].value;
-    					var path = '/transactions/' + selected + '/<%= params["year"] %>/<%= params["month"] %>';
+    					var path = '/transactions/';
+    					if (selected != "") {
+    					    path = path + selected + "/";
+    					}
+    					path = path + '<%= params["year"] %>/<%= params["month"] %>';
     					window.location = path;
     				}
     			</script>
@@ -61,7 +66,11 @@
     					<span class="info">
     						<span class="to"><%=h transaction.to %></span>
     						<br/>
-    						<%=h transaction.category.name %>
+    						<% if transaction.category != nil %>
+    						    <%=h transaction.category.name %>
+    						<% else %>
+    						    <em>Uncategorized</em>
+    						<% end %>
     					</span>
     				</a>
     				<span class="data"><%= number_to_currency(transaction.amount) %></span>

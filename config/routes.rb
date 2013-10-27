@@ -4,11 +4,13 @@ Toolbox::Application.routes.draw do
 
   resources :accounts
 
-  resources :categories
+  resources :categories, except: :show
   match 'categories/:year/:month' => 'categories#index'
   match 'categories/new/:year/:month' => 'categories#new'
-  match 'categories/:id/:year/:month' => 'categories#show'
+  match 'categories/manage' => 'categories#manage'
+  match 'categories/manage/:year/:month' => 'categories#manage'
   match 'categories/:id/edit/:year/:month' => 'categories#edit'
+  match 'categories/:id/:year/:month' => 'categories#destroy'
 
   resources :transactions
   match 'transactions/reconcile/:id' => 'transactions#reconcile'
@@ -21,17 +23,6 @@ Toolbox::Application.routes.draw do
   match 'savings_accounts/add_subtract_form/:id' => 'savings_accounts#add_subtract_form'
   match 'savings_accounts/add_subtract' => 'savings_accounts#add_subtract'
   resources :savings_accounts
-
-  match 'list_items/complete/:id' => 'list_items#complete'
-  match 'list_items/incomplete/:id' => 'list_items#incomplete'
-  match 'list_items/quick_add' => 'list_items#quick_add'
-  resources :list_items
-  resources :lists
-
-  match 'inventory_items/increase_quantity' => 'inventory_items#increase_quantity'
-  match 'inventory_items/decrease_quantity' => 'inventory_items#decrease_quantity'
-  resources :inventory_items
-  resources :inventories
 
   match 'login' => 'auth#login'
   match 'logout' => 'auth#logout'
@@ -86,7 +77,7 @@ Toolbox::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "home#index"
+  root :to => "categories#index"
 
   # See how all your routes lay out with "rake routes"
 

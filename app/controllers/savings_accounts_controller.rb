@@ -46,6 +46,9 @@ class SavingsAccountsController < ApplicationController
     
     respond_to do |format|
       if @savings_account.save
+        @savings_accounts = SavingsAccount.all
+        @total = 0.0
+        @savings_accounts.each { |x| @total += x.amount unless x.amount.blank? }
         format.js { render :template => "/savings_accounts/add_subtract.rjs" }
       end
     end

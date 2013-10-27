@@ -1,5 +1,0 @@
-<li id="<%= item.id %>">
-    <input type="checkbox" class="active-mode" id="checkbox-<%= item.id %>" data-id="<%= item.id %>" data-action="<%= item.completed ? 'incomplete' : 'complete' %>" name="completed" <%= item.completed ? "checked" : "" %>>
-    <%= link_to "", item, :remote => true, :method => :delete, :class => "sprite delete-icon pad-right edit-mode", :style => "display:none;" %>
-	<a class="list-item <%= item.completed ? 'completed' : '' %>" href="/list_items/<%= item.id %>/edit"><%= item.name ? item.name : "nameless" %></a>
-</li>
