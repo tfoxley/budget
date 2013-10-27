@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    	<title>Totals</title>
+    	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    	<meta name="viewport" content="width=device-width, user-scalable=no" />
+		<%= stylesheet_link_tag 'mobile' %>
+		<%= javascript_include_tag "jquery-1.7.1.min", "jquery-rails", "main" %>
+    </head>
+    <body>
+    	<div id="header">
+    		<h1>Totals</h1>
+    		<span class="left"><a href="#" class="sprite menu-icon" id="menu"></a></span>
+    		<span class="right"><a href="<%= @new_link %>" class="sprite menu-new-icon"></a></span>
+    	</div>
+    	
+    	<div id="nav">
+    	    <ul>
+    	        <li><a href="/categories/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite budget-icon pad-right"></div>Budget</a></li>
+        		<li><a href="/transactions/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite transactions-icon pad-right"></div>Transactions</a></li>
+        		<li><a href="/savings_accounts"><div class="sprite piggybank-icon pad-right"></div>Savings</a></li>
+        		<li><a href="/categories/manage/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>"><div class="sprite categories-icon pad-right"></div>Manage Categories</a></li>
+        	</ul>
+        </div>
+    	
+    	<ul class="category-list">
+    		<% @categories.each do |category| %>
+    			<li class="category">
+    				<a href="/categories/<%= category.id %>/edit/<%= @cur_date.strftime("%Y") %>/<%= @cur_date.strftime("%m") %>">
+    				    <%= category.name %>
+    			        <span class="right-align">
+            	            <%= number_to_currency(category.budget_amount, :negative_format => "- %u%n") %>
+            	        </span>
+            	    </a>
+    			</li>
+    		<% end %>
+    	</ul>
+    </body>
+</html>
