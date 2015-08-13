@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130307045722) do
+ActiveRecord::Schema.define(:version => 20120711123114) do
+
+  create_table "accounts", :force => true do |t|
+    t.string   "name"
+    t.float    "actual_balance"
+    t.float    "reconciled_balance"
+    t.boolean  "default"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
